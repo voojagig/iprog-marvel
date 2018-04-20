@@ -35,8 +35,8 @@ class Characters extends Component {
     //const searchTerm = this.state.type + '&query=' + this.state.filter;
 
     return (
-      <div className="Comics">
-      <h3>Comics</h3>
+      <div className="Characters">
+      <h3>Characters</h3>
         <button onClick={this.handleClick}>Hämta data</button>
       </div>
     );
@@ -44,4 +44,4 @@ class Characters extends Component {
 }
 
 
-export default Comics;
+export default Characters;
