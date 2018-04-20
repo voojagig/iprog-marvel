@@ -1,41 +1,32 @@
 import React, { Component } from 'react';
 import './Characters.css';
+import Navbar from '../Navbar/Navbar';
 
 class Characters extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      // filter: '',
-      // type: '',
-      // dishes: '',
+      title: 'Comics',
+
     };
 
-    //this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(event){
-    alert("klickat på knappen");
-
-    // modelInstance.getMarvelResponse();
-
-    // this.setState({
-    //   Uppdate: 'yes'
-    // });
+handleClick = (event)=>{
+    console.log("klickat på knappen");
 
     event.preventDefault();
-    //this.fetchDishes()
 
   }
 
-  
-
-
   render() {
-    //const searchTerm = this.state.type + '&query=' + this.state.filter;
 
     return (
       <div className="Characters">
+      <Navbar/>
+
       <h3>Characters</h3>
         <button onClick={this.handleClick}>Hämta data</button>
       </div>

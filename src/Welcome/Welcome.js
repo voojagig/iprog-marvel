@@ -5,6 +5,15 @@ import Navbar from '../Navbar/Navbar';
 import { Link } from 'react-router-dom';
 
 class Welcome extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        title: 'MarvelQuiz',
+
+
+    };
+
+  }
   render() {
     return (
       <div className="Welcome">

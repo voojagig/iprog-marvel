@@ -30,15 +30,6 @@ class App extends Component {
 
           <Route path="/comics" render={() => <Comics model={modelInstance}/>}/>
           <Route path="/characters" render={() => <Characters model={modelInstance}/>}/>
-        
-          {/*}<Route path="/showdish/:id" render={props => <ShowDish model={modelInstance} id={props.match.params.id}/>}/>
-          
-          <Route path="/ConfirmDinner" render={() => <ConfirmDinner model={modelInstance}/>}/>
-          
-          <Route path="/Print" render={() => <Print model={modelInstance}/>}/> */}
-
-
-        
         </header>
       </div>
     );

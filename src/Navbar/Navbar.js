@@ -15,12 +15,12 @@ class Navbar extends Component {
 			        <span className="icon-bar"></span>
 			        <span className="icon-bar"></span>
 			      </button>
-			      <a className="navbar-brand" href="#">Marvel</a> {/* should be the header */}
+			      <a className="navbar-brand " href="/">Marvel</a> {/* should be the header */}
 			    </div>
 
 			    <div className="collapse navbar-collapse" id="bss-example-navbar-collapse-1">
 			      <ul className="nav navbar-nav">
-			        <li className="active"><a href="/comics">Comics <span className="sr-only">(current)</span></a></li>
+			        <li><a href="/comics">Comics</a></li>
 			        <li><a href="/characters">Characters</a></li>
 			        <li><a href="#">Quiz</a></li>
 			      </ul>
