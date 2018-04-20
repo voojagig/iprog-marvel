@@ -5,6 +5,8 @@ import { modelInstance } from './data/Model'
 
 
 import Welcome from './Welcome/Welcome';
+import Comics from './Comics/Comics';
+import Characters from './Characters/Characters';
 
 
 
@@ -26,9 +28,10 @@ class App extends Component {
           {/* We rended diffrent component based on the path */}
           <Route exact path="/" component={Welcome}/>
 
-         {/*} <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
+          <Route path="/comics" render={() => <Comics model={modelInstance}/>}/>
+          <Route path="/characters" render={() => <Characters model={modelInstance}/>}/>
         
-          <Route path="/showdish/:id" render={props => <ShowDish model={modelInstance} id={props.match.params.id}/>}/>
+          {/*}<Route path="/showdish/:id" render={props => <ShowDish model={modelInstance} id={props.match.params.id}/>}/>
           
           <Route path="/ConfirmDinner" render={() => <ConfirmDinner model={modelInstance}/>}/>
           
