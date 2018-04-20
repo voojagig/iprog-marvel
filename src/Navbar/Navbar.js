@@ -20,17 +20,18 @@ class Navbar extends Component {
 
 			    <div className="collapse navbar-collapse" id="bss-example-navbar-collapse-1">
 			      <ul className="nav navbar-nav">
-			        <li className="active"><a href="#">Comics <span className="sr-only">(current)</span></a></li>
-			        <li><a href="#">Characters</a></li>
+			        <li className="active"><a href="/comics">Comics <span className="sr-only">(current)</span></a></li>
+			        <li><a href="/characters">Characters</a></li>
 			        <li><a href="#">Quiz</a></li>
 			      </ul>
-			      <form className="navbar-form navbar-left">
-			        <div className="form-group">
-			          <input type="text" className="form-control" placeholder="Search for comics or characters"/>
-			        </div>
-			        <button type="submit" className="btn btn-default">Search</button>
-			      </form>
+			    
 			      <ul className="nav navbar-nav navbar-right">
+			        <form className="navbar-form navbar-left">
+			        	<div className="form-group">
+			          		<input type="text" className="form-control" placeholder="Search for comics or characters"/>
+			        	</div>
+			        	<button type="submit" className="btn btn-default">Search</button>
+			      	</form>
 			        <li className="dropdown">
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register<span className="caret"></span></a>
 			          <ul className="dropdown-menu">
