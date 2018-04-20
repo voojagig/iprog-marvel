@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './Comics.css';
+import './Characters.css';
 
-class Comics extends Component {
+class Characters extends Component {
 
   constructor(props) {
     super(props);

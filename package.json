@@ -1,8 +1,9 @@
 {
-  "name": "dinnerplanner-html-react",
+  "name": "iprog-marvel",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "crypto-js": "^3.1.9-1",
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
