@@ -3,6 +3,14 @@ import './Navbar.css';
 import { Link, nav} from 'react-router-dom';
 
 class Navbar extends Component {
+	constructor(props) {
+		super(props)
+	    this.state = {
+	      status: 'INITIAL',
+
+	    };
+
+  	}
   render() {
     return (
       <div className="Navbar">
@@ -44,8 +52,6 @@ class Navbar extends Component {
 			        </li>
 			      </ul>
 			    </div>
-
-
   			</div>
 		</nav>
       </div>

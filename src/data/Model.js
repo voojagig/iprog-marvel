@@ -1,24 +1,24 @@
 const Model = function() {
 
 	var CryptoJS = require("crypto-js");
+	let observers = [];
 
-	this.fetchComics = function() {
-		console.log("in fetchComics in Model");
+	this.getComics = function() {
 		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
 		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';
 
 		// you need a new ts every request                                                                                    
-		  var ts = new Date().getTime();
-		  var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
+		var ts = new Date().getTime();
+		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
 		  
-		  // the api deals a lot in ids rather than just the strings you want to use
-		  var characterId = '1009718'; // wolverine                                                                             
+		// the api deals a lot in ids rather than just the strings you want to use
+		var characterId = '1009718'; // wolverine                                                                             
 
-		  //we have trouble of getting the data from the API.
-		  var url = 'http://gateway.marvel.com:80/v1/public/comics?';
-		  var finalurl = url + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
+		//we have trouble of getting the data from the API.
+		var url = 'http://gateway.marvel.com:80/v1/public/comics?limit=10&';
+		var finalurl = url + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
-		 // example url: http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150 
+		// example url: http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150 
 		console.log(finalurl);
 
 		 return fetch(finalurl)
@@ -42,7 +42,15 @@ const Model = function() {
 	    }
 	    throw error;
   	}
-
+	this.addObserver = function (observer) {
+    	observers.push(observer);
+  	};
+  	this.removeObserver = function (observer) {
+	  	observers = observers.filter(o => o !== observer);
+	};
+	const notifyObservers = function () {
+		observers.forEach(o => o.update());
+	};
   }
 
 
