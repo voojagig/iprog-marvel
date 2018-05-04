@@ -13,47 +13,6 @@ class Navbar extends Component {
 
   	}
 
-/*componentDidMount = () => {
-    // when data is retrieved we update the state
-    // this will cause the component to re-render
-    modelInstance.addObserver(this)
-
-  
-  	// Get the container element
-  	let linkContainer = document.getElementById("myNavbar");
-console.log(linkContainer);
-// Get all buttons with class="link" inside the container
-let links = linkContainer.getElementsByClassName("link");
-console.log(links);
-
-// Loop through the links and add the active class to the current/clicked button
-for (var i = 0; i < links.length; i++) {
-  links[i].addEventListener("click", function() {
-    var current = document.getElementsByClassName("active");
-    current[0].className = current[0].className.replace("active", "");
-    //this.className.add("active");
-
-  });
-}
-console.log(links);
-
-}
-
-
-  // this is called when component is removed from the DOM
-  // good place to remove observer
-  componentWillUnmount() {
-    modelInstance.removeObserver(this)
-  }
-
-  // in our update function we modify the state which will
-  // cause the component to re-render
-  update() {
-    this.setState({
-      update: 'yess',
-    });
-  }
-  */
   render() {
 
     return (
