@@ -12,6 +12,7 @@ class ShowOptions extends Component {
       status: 'INITIAL',
       title: ShowOptions,
       comics: '',
+      type: '/comics'
     }
     this.loadData = this.loadData.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -76,17 +77,18 @@ class ShowOptions extends Component {
     let letters = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
 
     letterButtons = letters.map((letter) =>
-      //<button className="btn btn-lg" id={letter} onClick={this.handleClick}>{letter}</button>
+      
       <li className="page-item"><a className="page-link" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
 
+
       )
+console.log(this.state.type);
 
     return (
       <div className="Comics">
-        <Navbar/>
 
-        <div className="container">
-          <h3>Comics</h3>
+        <Navbar location = {this.state.type}/>
+        <h3>Comics</h3>
 
         {/*Adding buttons for each letter, to browse comics*/}
         <nav aria-label="Alphabetical navigation">
@@ -101,8 +103,6 @@ class ShowOptions extends Component {
           </div>
         </div>
         </div>
-        
-      </div>
     
     );
   }
