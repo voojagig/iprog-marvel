@@ -77,34 +77,31 @@ class ShowOptions extends Component {
 
     letterButtons = letters.map((letter) =>
       //<button className="btn btn-lg" id={letter} onClick={this.handleClick}>{letter}</button>
-      <li class="page-item"><a class="page-link" href="#" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
+      <li className="page-item"><a className="page-link" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
 
       )
 
     return (
       <div className="Comics">
         <Navbar/>
-        <h3>Comics</h3>
 
-        <nav aria-label="...">
-          <ul class="pagination pagination-lg">
+        <div className="container">
+          <h3>Comics</h3>
+
+        {/*Adding buttons for each letter, to browse comics*/}
+        <nav aria-label="Alphabetical navigation">
+          <ul className="pagination justify-content-end">
             {letterButtons}
-
-           {/* <li class="page-item disabled">
-              <a class="page-link" href="#" tabindex="-1">1</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#" onClick={()=>this.handleClick('A')}>A</a></li>*/}
           </ul>
         </nav>
-
-
         
         <div className="container">
           <div className="row row-eq-height">
            <Comics comics = {this.state.results} status = {this.state.status} />
           </div>
         </div>
+        </div>
+        
       </div>
     
     );

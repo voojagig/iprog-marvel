@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import './Comics.css';
 import { modelInstance } from '../data/Model'
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import { ButtonToolbar } from 'react-bootstrap';
+import ComicModal from '../Comics/Comics';
+
+
+
 
 class Comics extends Component {
 
@@ -9,6 +16,7 @@ class Comics extends Component {
     this.state = {
       status: 'INITIAL',
       title: Comics,
+      lgShow: false,
     }
   }
 
@@ -41,6 +49,8 @@ class Comics extends Component {
 
   render() {
     let comicsList = null;
+    // let lgClose = () => this.setState({ lgShow: false });
+
     
     // depending on the state we either generate
     // useful message to the user or show the list
@@ -58,12 +68,14 @@ class Comics extends Component {
         console.log(this.props.comics);
           comicsList = this.props.comics.map((comic) =>
                 <div className="col-md-3 col-sm-4" key={comic.id}>
+                    <Link to={"/comics/" + comic.id}>
                     <div className="thumbnail">
                       <img src={comic.thumbnail.path + "/portrait_fantastic." + comic.thumbnail.extension} alt=""/>
                       <div className="caption">
                         <h4>{comic.title}</h4>
                       </div>
                     </div>
+                    </Link>
                 </div>
               );
 
@@ -77,6 +89,10 @@ class Comics extends Component {
       <div className="Comics">
         <div className="container">
           <div className="row row-eq-height">
+          <ButtonToolbar>
+            <Button  bsStyle="primary" onClick={() => this.setState({ lgShow: true })}>Visa Modal</Button>
+            
+          </ButtonToolbar>
             {comicsList}
           </div>
         </div>

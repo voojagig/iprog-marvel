@@ -5,7 +5,7 @@ import { modelInstance } from './data/Model'
 
 
 import Welcome from './Welcome/Welcome';
-//import Comics from './Comics/Comics';
+import Comic from './Comic/Comic';
 import ShowOptions from './ShowOptions/ShowOptions';
 import Characters from './Characters/Characters';
 
@@ -31,6 +31,7 @@ class App extends Component {
           <Route exact path="/" component={Welcome}/>
 
           <Route path="/comics" render={() => <ShowOptions model={modelInstance}/>}/>
+          <Route path="/comics/:id" render={props =><Comic model={modelInstance} id={props.match.params.id}/>}/>
           <Route path="/characters" render={() => <Characters model={modelInstance}/>}/>
         </header>
       </div>
