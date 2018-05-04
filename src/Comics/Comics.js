@@ -9,7 +9,6 @@ class Comics extends Component {
     this.state = {
       status: 'INITIAL',
       title: Comics,
-      results: [],
     }
     this.loadData = this.loadData.bind(this);
 
@@ -20,15 +19,15 @@ class Comics extends Component {
   // component is actually shown to the user (mounted to DOM)
   // that's a good place to call the API and get the data
   loadData(){
-         console.log("inne i loadData1");
-
     this.props.model.getComics().then(Data => {
-     console.log("inne i loadData");
-
+      const result = Data.data.results.filter((c) => {
+        if( c.thumbnail.path !="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
+      });
       this.setState({
         status: 'LOADED',
-        results: Data.data.results,
+        results: result,
       });
+      console.log(this.state.status)
 
     }).catch(() => {
       this.setState({
@@ -38,14 +37,10 @@ class Comics extends Component {
     });
   }
   componentDidMount = () => {
-     console.log("inne i componentDidmount");
     // when data is retrieved we update the state
     // this will cause the component to re-render
     this.props.model.addObserver(this)
     this.loadData();
-
-    console.log(this.state.status);
-
 
   }
 
@@ -59,42 +54,51 @@ class Comics extends Component {
   // in our update function we modify the state which will
   // cause the component to re-render
   update() {
-    console.log("inne i update");
     this.loadData();
   }
 
   render() {
-        console.log(this.state.status);
-
-          let comics = null;
+    let comics = null;
     
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
+    //if(comic.thumbnail.path !="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"){
+
     switch (this.state.status) {
       case 'INITIAL':
         comics = <em>Loading...</em>
         break;
       case 'LOADED':
-          console.log(this.state.status);
-comics =
-        <div className="row">
-            <div className="col-sm-8 col-xs-12 page-header">
-              <h2 id="headlineDish">{this.state.results[1].title}</h2>
-            </div>
-            <div className="col-sm-8 col-xs-12">
-              <img src={this.state.results[1].thumbnail.path + "." + this.state.results[1].thumbnail.extension} alt=""/>
-            </div>
-          </div>
+          comics = this.state.results.map((comic) =>
+                <div className="col-md-3 col-sm-4" key={comic.id}>
+                    <div className="thumbnail">
+                      <img src={comic.thumbnail.path + "/portrait_fantastic." + comic.thumbnail.extension} alt=""/>
+                      <div className="caption">
+                        <h4>{comic.title}</h4>
+                      </div>
+                    </div>
+                </div>
+              );
+
           break;
-        }
+      default:
+        comics = <b>Failed to load data, please try again. Verify that you have network connection, please. </b>
+        break;
+        
+    }
     return (
       <div className="Comics">
         <Navbar/>
         <h3>Comics</h3>
         <button onClick={this.handleClick}>Hämta data</button>
-        <div>{comics}</div>
+        <div className="container">
+          <div className="row row-eq-height">
+            {comics}
+          </div>
+        </div>
       </div>
+    
     );
   }
 }
