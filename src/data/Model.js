@@ -3,7 +3,7 @@ const Model = function() {
 	var CryptoJS = require("crypto-js");
 	let observers = [];
 
-	this.getComics = function() {
+	this.getComics = function(startsWithLetter) {
 		//comics?titleStartsWith=A&orderBy=title&apiKey...
 		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
 		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';
@@ -13,11 +13,12 @@ const Model = function() {
 		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
 		  
 		// the api deals a lot in ids rather than just the strings you want to use
-		var characterId = '1009718'; // wolverine                                                                             
+		var characterId = '1009718'; // wolverine  
+		var titleStartsWith = 'titleStartsWith=' + startsWithLetter + '&orderBy=title&';                                                                           
 
 		//we have trouble of getting the data from the API.
-		var url = 'http://gateway.marvel.com:80/v1/public/comics?limit=30&';
-		var finalurl = url + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
+		var url = 'http://gateway.marvel.com:80/v1/public/comics?';
+		var finalurl = url + titleStartsWith + 'limit=10&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		// example url: http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150 
 		console.log(finalurl);
