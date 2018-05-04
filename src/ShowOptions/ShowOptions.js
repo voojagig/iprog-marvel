@@ -12,6 +12,7 @@ class ShowOptions extends Component {
       status: 'INITIAL',
       title: ShowOptions,
       comics: '',
+      type: '/comics'
     }
     this.loadData = this.loadData.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -77,17 +78,18 @@ class ShowOptions extends Component {
 
     letterButtons = letters.map((letter) =>
       //<button className="btn btn-lg" id={letter} onClick={this.handleClick}>{letter}</button>
-      <li class="page-item"><a class="page-link" href="#" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
+      <li className="page-item"><a className="page-link" href="#" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
 
       )
+console.log(this.state.type);
 
     return (
       <div className="Comics">
-        <Navbar/>
+        <Navbar location = {this.state.type}/>
         <h3>Comics</h3>
 
         <nav aria-label="...">
-          <ul class="pagination pagination-lg">
+          <ul className="pagination pagination-lg">
             {letterButtons}
 
            {/* <li class="page-item disabled">
