@@ -18,7 +18,7 @@ class ComicModal extends React.Component {
          
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
+          <Button>Close</Button>
         </Modal.Footer>
       </Modal>
     );

@@ -49,7 +49,7 @@ class Comics extends Component {
 
   render() {
     let comicsList = null;
-    // let lgClose = () => this.setState({ lgShow: false });
+    let lgClose = () => this.setState({ lgShow: false });
 
     
     // depending on the state we either generate
@@ -91,7 +91,8 @@ class Comics extends Component {
           <div className="row row-eq-height">
           <ButtonToolbar>
             <Button  bsStyle="primary" onClick={() => this.setState({ lgShow: true })}>Visa Modal</Button>
-            
+            <ComicModal show={this.state.lgShow}/>
+
           </ButtonToolbar>
             {comicsList}
           </div>
