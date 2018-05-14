@@ -8,6 +8,8 @@ import Welcome from './Welcome/Welcome';
 import Comic from './Comic/Comic';
 import ShowOptions from './ShowOptions/ShowOptions';
 import Characters from './Characters/Characters';
+import Login from "./Login/Login";
+import Register from "./Register/Register";
 
 
 
@@ -29,6 +31,8 @@ class App extends Component {
           
           {/* We rendered diffrent component based on the path */}
           <Route exact path="/" component={Welcome}/>
+          <Route path="/login" exact component={Login}/>
+          <Route path="/register" exact component={Register}/>
 
           <Route path="/comics" render={() => <ShowOptions model={modelInstance}/>}/>
           <Route path="/comics/:id" render={props =><Comic model={modelInstance} id={props.match.params.id}/>}/>

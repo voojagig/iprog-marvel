@@ -1,9 +1,9 @@
 .navbar-default {
   background-color: #d5220f; 	/* Red */
-  border-color: #e2584a;		/* Lighter red */
+  border-color: black;		
   height: 80px;
   padding-top: 15px;
-  font-size: 20px;
+  font-size: 25px;
 }
 .navbar-default .navbar-brand {
   color: #ecf0f1;				/* White */
@@ -20,13 +20,13 @@
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #ffbbbc;
+  color: #ffbbbc;					/* Lighter red */
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
-  color: #ffbbbc;
-  background-color: #e2584a;
+  color: #ffbbbc;			
+  background-color: #e2584a;		/* Lighter red */
 }
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
@@ -47,6 +47,8 @@
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
   border-color: #ecf0f1;
+    background-color: #d5220f; 	/* Red */
+
 }
 .navbar-default .navbar-link {
   color: #ecf0f1;
@@ -72,4 +74,7 @@
 }
 .navbar-brand{
 	font-size: 65px;
+}
+.form-group{
+	padding-right:  5px;
 }

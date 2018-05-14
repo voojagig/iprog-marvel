@@ -8,8 +8,8 @@ The website will also have the opportunity to register for an account where you 
 _______
 Set up
 _______
-Download the used font: Benton Sans Extra Comp Black here: 
-http://fontsgeek.com/fonts/BentonSans-ExtraComp-Black-Regular/download
+
+
 
 What's in the project
 -----

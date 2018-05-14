@@ -44,9 +44,10 @@ class Navbar extends Component {
 			        	<button type="submit" className="btn btn-default">Search</button>
 			      	</form>
 			        <li className="dropdown">
-			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register<span className="caret"></span></a>
+			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
 			          <ul className="dropdown-menu">
-			            <li><a href="#">Log in/Register</a></li>
+			            <li><a href="/login">Log in</a></li>
+			            <li><a href="/register">Register</a></li>
 			            <li><a href="#">Highscore</a></li>
 			            <li><a href="#">Saved characters</a></li>
 			            <li role="separator" className="divider"></li>
