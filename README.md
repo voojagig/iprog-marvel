@@ -1,9 +1,15 @@
-Interaction Programing - Project assignment - HTML-Javascript-react
+﻿Interaction Programing - Project assignment - HTML-Javascript-react
 =================================================
 
 This files is our start of our projekt: Marvel heroes. the purpose of the site is to look up and read about comics and characters from Marvel we have also plan to have a quiz about Marvels characters. How the quiz will be is not completely decided yet but an example of one type of question is you get a name of a character(ex. superhero-name) or their "private person" name and there are multiple pictures of different characters. you then get to pick the picture that shows the stated name.  
 
 The website will also have the opportunity to register for an account where you can save your game highscores and save your cHaracters example your favorite superheroes.
+
+_______
+Set up
+_______
+Download the used font: Benton Sans Extra Comp Black here: 
+http://fontsgeek.com/fonts/BentonSans-ExtraComp-Black-Regular/download
 
 What's in the project
 -----

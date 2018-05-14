@@ -90,8 +90,8 @@ class Comics extends Component {
         <div className="container">
           <div className="row row-eq-height">
           <ButtonToolbar>
-            <Button  bsStyle="primary" onClick={() => this.setState({ lgShow: true })}>Visa Modal</Button>
-            <ComicModal show={this.state.lgShow}/>
+            //<Button  bsStyle="primary" onClick={() => this.setState({ lgShow: true })}>Visa Modal</Button>
+            //<ComicModal show={this.state.lgShow}/>
 
           </ButtonToolbar>
             {comicsList}

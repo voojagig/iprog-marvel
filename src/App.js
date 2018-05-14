@@ -34,6 +34,7 @@ class App extends Component {
           <Route path="/comics/:id" render={props =><Comic model={modelInstance} id={props.match.params.id}/>}/>
           <Route path="/characters" render={() => <Characters model={modelInstance}/>}/>
         </header>
+     
       </div>
     );
   }

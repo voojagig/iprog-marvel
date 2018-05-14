@@ -25,7 +25,7 @@ class Navbar extends Component {
 			        <span className="icon-bar"></span>
 			        <span className="icon-bar"></span>
 			      </button>
-			      <div className="navbar-brand">Marvel</div> {/* should be the header */}
+			      <div className="navbar-brand">MARVEL</div> {/*the header */}
 			    </div>
 
 			    <div className="collapse navbar-collapse" id="navbar-collapse-1">

@@ -1,0 +1,15 @@
+@font-face{
+	font-family: 'MarvelFont';
+	font-style: normal;
+
+	src: 
+	local('MarvelFont'),
+	url(../src/font/BentonSansExtraCompBlackRegular.otf) format('openType');
+}
+
+
+body{
+	font-family: 'MarvelFont', sans-serif;
+	padding-top: 80px;
+
+}
