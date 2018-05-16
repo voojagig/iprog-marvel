@@ -35,7 +35,7 @@ class ShowOptions extends Component {
   loadData(startsWithLetter){
     this.props.model.getComics(startsWithLetter).then(Data => {
       const result = Data.data.results.filter((c) => {
-        if( c.thumbnail.path !="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
+        if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
       });
       this.setState({
         status: 'LOADED',
@@ -78,11 +78,11 @@ class ShowOptions extends Component {
 
     letterButtons = letters.map((letter) =>
       
-      <li className="page-item"><a className="page-link" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
+      <li className="page-item" key={letter}><a className="page-link" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
 
 
       )
-console.log(this.state.type);
+  console.log(this.state.type);
 
     return (
       <div className="Comics">

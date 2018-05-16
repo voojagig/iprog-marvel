@@ -4,9 +4,14 @@ import { modelInstance } from '../data/Model'
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { ButtonToolbar } from 'react-bootstrap';
-import ComicModal from '../Comics/Comics';
+import Modal from 'react-bootstrap/lib/Modal'
+import ModalHeader from 'react-bootstrap/lib/ModalHeader';
+import ModalBody from 'react-modal';
+import PropTypes from 'prop-types';
 
 
+
+//var Modal = require('react-bootstrap/lib/Modal').default;
 
 
 class Comics extends Component {
@@ -16,8 +21,12 @@ class Comics extends Component {
     this.state = {
       status: 'INITIAL',
       title: Comics,
-      lgShow: false,
-    }
+      show: false,
+    };
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
+
+
   }
 
 
@@ -47,15 +56,27 @@ class Comics extends Component {
     });
   }
 
+  handleClose() {
+    this.setState({ 
+      show: false, 
+    });
+  }
+
+  handleShow() {
+    this.setState({ 
+      show: true,
+    });
+     console.log("handleShow" + this.state.show)
+  }
+
   render() {
     let comicsList = null;
-    let lgClose = () => this.setState({ lgShow: false });
+
 
     
     // depending on the state we either generate
     // useful message to the user or show the list
-    // of returned dishes
-    //if(comic.thumbnail.path !="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available"){
+    // of returned comics
 
     switch (this.props.status) {
       case 'INITIAL':
@@ -86,14 +107,24 @@ class Comics extends Component {
         
     }
     return (
-      <div className="Comics">
+      <div className="Comics" key="comics">
         <div className="container">
           <div className="row row-eq-height">
-          <ButtonToolbar>
-            //<Button  bsStyle="primary" onClick={() => this.setState({ lgShow: true })}>Visa Modal</Button>
-            //<ComicModal show={this.state.lgShow}/>
-
-          </ButtonToolbar>
+            <Button  bsStyle="primary" onClick={this.handleShow}>Visa Modal</Button>
+            <Modal show={this.state.show} onHide={this.handleClose} aria-labelledby="ModalHeader"
+>          <Modal.Header closeButton>
+            <Modal.Title id='ModalHeader'>A Title Goes here</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Some Content here</p>
+          </Modal.Body>
+          <Modal.Footer>
+            // If you don't have anything fancy to do you can use
+            // the convenient `Dismiss` component, it will
+            // trigger `onHide` when clicked
+</Modal.Footer>
+      </Modal>
+  
             {comicsList}
           </div>
         </div>
