@@ -1,1 +1,14 @@
- 
+ .card {
+ 	width: 100px;
+ 	height: 100px;
+ 	background-color: lightgray;
+ }
+
+.board {
+	max-width: 1000px;
+	margin: 20px auto;
+}
+
+.quiz {
+	background-color: grey;
+}
