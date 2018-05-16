@@ -5,7 +5,7 @@ import { modelInstance } from './data/Model'
 
 
 import Welcome from './Welcome/Welcome';
-import Comic from './Comic/Comic';
+import Comic from './ComicModal/Comic';
 import ShowOptions from './ShowOptions/ShowOptions';
 import Characters from './Characters/Characters';
 import Login from "./Login/Login";
