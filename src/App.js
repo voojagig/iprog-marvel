@@ -10,6 +10,8 @@ import ShowOptions from './ShowOptions/ShowOptions';
 import Characters from './Characters/Characters';
 import Login from "./Login/Login";
 import Register from "./Register/Register";
+import Quiz from "./Quiz/Quiz";
+
 
 
 
@@ -35,8 +37,9 @@ class App extends Component {
           <Route path="/register" exact component={Register}/>
 
           <Route path="/comics" render={() => <ShowOptions model={modelInstance}/>}/>
-         {/*} <Route path="/comics/:id" render={props =><Comic model={modelInstance} id={props.match.params.id}/>}/>*/}
           <Route path="/characters" render={() => <Characters model={modelInstance}/>}/>
+          <Route path="/Quiz" exact component={Quiz}/>
+
         </header>
      
       </div>

@@ -7,7 +7,7 @@ class Characters extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: 'Comics',
+      type: '/characters',
 
     };
 
@@ -25,7 +25,7 @@ handleClick = (event)=>{
 
     return (
       <div className="Characters">
-      <Navbar/>
+      <Navbar location = {this.state.type}/>
 
       <h3>Characters</h3>
         <button onClick={this.handleClick}>Hämta data</button>

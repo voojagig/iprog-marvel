@@ -33,7 +33,7 @@ class Navbar extends Component {
 			      	<li className={(this.props.location === '/') ? 'active' : ''}><a href="/">Home</a></li>
 			        <li className={(this.props.location === '/comics') ? 'active' : '' }><a href="/comics">Comics</a></li>
 			        <li className={(this.props.location === '/characters') ? 'active' : ''}><a href="/characters">Characters</a></li>
-			        <li className="link"><a href="#">Quiz</a></li>
+			        <li className={(this.props.location === '/quiz') ? 'active' : ''}><a href="/Quiz">Quiz</a></li>
 			      </ul>
 			    
 			      <ul className="nav navbar-nav navbar-right">
