@@ -39,4 +39,4 @@ class ComicModal extends React.Component {
 }
 
 
-export default ComicModal
+export default Comicmodal

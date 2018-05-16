@@ -29,6 +29,7 @@ const Model = function() {
 	}
 
 	this.getComic = function(characterId) {
+		console.log("hejsan inne i getComic");
 		//comics?titleStartsWith=A&orderBy=title&apiKey...
 		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
 		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';

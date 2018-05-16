@@ -8,6 +8,7 @@ import Modal from 'react-bootstrap/lib/Modal'
 import ModalHeader from 'react-bootstrap/lib/ModalHeader';
 import ModalBody from 'react-modal';
 import PropTypes from 'prop-types';
+import ComicCard from '../ComicCard/ComicCard';
 
 
 
@@ -21,13 +22,13 @@ class Comics extends Component {
     this.state = {
       status: 'INITIAL',
       title: Comics,
-      show: false,
+      showModal: false,
+      comic: null,
     };
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
-
-
-  }
+    //this.handleShow = this.handleShow.bind(this);
+    //this.toggleModal = this.toggleModal.bind(this);
+    // this.handleClose = this.handleClose.bind(this);
+  } 
 
 
   // this methods is called by React lifecycle when the 
@@ -40,6 +41,12 @@ class Comics extends Component {
     modelInstance.addObserver(this)
 
   }
+
+   toggleModal() {
+      this.setState({
+        showModal: !this.state.showModal
+      });
+    }
 
 
   // this is called when component is removed from the DOM
@@ -56,24 +63,35 @@ class Comics extends Component {
     });
   }
 
-  handleClose() {
-    this.setState({ 
-      show: false, 
+  // handleClose() {
+  //   this.setState({ 
+  //     show: false, 
+  //     comic: null,
+  //   });
+  // } 
+
+  handleComic(id) {
+    console.log(id);
+    modelInstance.getComic(id).then(comicResults => {
+      this.setState({ 
+      comic: comicResults.data.results[0],
+      showModal: true, 
     });
+    });
+    
   }
 
   handleShow() {
     this.setState({ 
-      show: true,
+      showModal: true,
     });
      console.log("handleShow" + this.state.show)
   }
 
   render() {
     let comicsList = null;
-
-
-    
+    console.log("props i comics: " + this.state.showModal);
+        
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned comics
@@ -89,14 +107,18 @@ class Comics extends Component {
         console.log(this.props.comics);
           comicsList = this.props.comics.map((comic) =>
                 <div className="col-md-3 col-sm-4" key={comic.id}>
-                    <Link to={"/comics/" + comic.id}>
-                    <div className="thumbnail">
+
+                    <Button onClick={ () => this.handleComic(comic.id)}>
+
+                    <div className="thumb">
                       <img src={comic.thumbnail.path + "/portrait_fantastic." + comic.thumbnail.extension} alt=""/>
                       <div className="caption">
                         <h4>{comic.title}</h4>
                       </div>
                     </div>
-                    </Link>
+
+                    </Button>
+
                 </div>
               );
 
@@ -104,27 +126,43 @@ class Comics extends Component {
       default:
         comicsList = <b>Failed to load data, please try again. Verify that you have network connection, please. </b>
         break;
-        
     }
     return (
       <div className="Comics" key="comics">
         <div className="container">
+
+
+        <div className="row">
+          <h1>hejhej</h1>
+         {/*} <ComicCard onRequestClose={() => this.handleToggleModal()} comic={this.state.comic} show={this.state.showModal}/>*/}
+          <ComicCard onClick={this.toggleModal.bind(this)} comic={this.state.comic} show={this.state.showModal}/>
+        </div>
+
+
+
+        <div className="row">
+          {/*<Button  bsStyle="primary" onClick={this.handleShow}>Visa Modal</Button>
+            <Modal show={this.state.show} onHide={this.handleClose} aria-labelledby="ModalHeader">          
+              <Modal.Header closeButton>
+                <Modal.Title id='ModalHeader'>A Title Goes here</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <p>Some Content here</p>
+              </Modal.Body>
+
+              <Modal.Footer>
+                // If you don't have anything fancy to do you can use
+                // the convenient `Dismiss` component, it will
+                // trigger `onHide` when clicked
+              </Modal.Footer>
+            </Modal>*/}
+        </div>
           <div className="row row-eq-height">
-            <Button  bsStyle="primary" onClick={this.handleShow}>Visa Modal</Button>
-            <Modal show={this.state.show} onHide={this.handleClose} aria-labelledby="ModalHeader"
->          <Modal.Header closeButton>
-            <Modal.Title id='ModalHeader'>A Title Goes here</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <p>Some Content here</p>
-          </Modal.Body>
-          <Modal.Footer>
-            // If you don't have anything fancy to do you can use
-            // the convenient `Dismiss` component, it will
-            // trigger `onHide` when clicked
-</Modal.Footer>
-      </Modal>
-  
+
+            
+
+ 
             {comicsList}
           </div>
         </div>
