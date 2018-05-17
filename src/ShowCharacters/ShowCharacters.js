@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import './ShowOptions.css';
+import './ShowCharacters.css';
 import Navbar from '../Navbar/Navbar';
-import Comics from '../Comics/Comics';
+import Characters from '../Characters/Characters';
 
 
-class ShowOptions extends Component {
+class ShowCharacters extends Component {
 
   constructor(props) {
     super(props)
     this.state = {
       status: 'INITIAL',
-      title: ShowOptions,
-      comics: '',
-      type: '/comics'
+      title: ShowCharacters,
+      Characters: '',
+      type: '/characters'
     }
     this.loadData = this.loadData.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -24,16 +24,11 @@ class ShowOptions extends Component {
       status:'LOADING'
     });
 
-    //let value = e.target.id;
-    console.log(e);
     this.loadData(e.letter);
   }
 
-  // this methods is called by React lifecycle when the 
-  // component is actually shown to the user (mounted to DOM)
-  // that's a good place to call the API and get the data
   loadData(startsWithLetter){
-    this.props.model.getComics(startsWithLetter).then(Data => {
+    this.props.model.getCharacters(startsWithLetter).then(Data => {
       const result = Data.data.results.filter((c) => {
         if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
       });
@@ -41,7 +36,6 @@ class ShowOptions extends Component {
         status: 'LOADED',
         results: result,
       });
-      console.log(this.state.status)
 
     }).catch(() => {
       this.setState({
@@ -55,21 +49,13 @@ class ShowOptions extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     this.props.model.addObserver(this)
-    //this.loadData('A');
 
   }
-
 
   // this is called when component is removed from the DOM
   // good place to remove observer
   componentWillUnmount() {
     this.props.model.removeObserver(this)
-  }
-
-  // in our update function we modify the state which will
-  // cause the component to re-render
-  update() {
-    //this.loadData();
   }
 
   render() {
@@ -80,16 +66,14 @@ class ShowOptions extends Component {
       
       <li className="page-item" key={letter}><a className="page-link" onClick={()=>this.handleClick({letter})}>{letter}</a></li>
 
-
       )
-  console.log(this.state.type);
 
     return (
-      <div className="Comics">
+      <div className="Characters">
 
         <Navbar location = {this.state.type}/>
         <div className="container">
-          {/*Adding buttons for each letter, to browse comics*/}
+          {/*Adding buttons for each letter, to browse characters*/}
           <nav aria-label="Alphabetical navigation">
             <ul className="pagination justify-content-end">
               {letterButtons}
@@ -98,7 +82,7 @@ class ShowOptions extends Component {
         </div>
         <div className="container page">
           <div className="row row-eq-height">
-           <Comics comics = {this.state.results} status = {this.state.status} />
+           <Characters characters = {this.state.results} status = {this.state.status} />
           </div>
         </div>
       </div>
@@ -108,4 +92,4 @@ class ShowOptions extends Component {
 }
 
 
-export default ShowOptions;
+export default ShowCharacters;

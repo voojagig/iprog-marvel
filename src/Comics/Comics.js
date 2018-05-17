@@ -11,10 +11,6 @@ import PropTypes from 'prop-types';
 import ComicCard from '../ComicCard/ComicCard';
 
 
-
-//var Modal = require('react-bootstrap/lib/Modal').default;
-
-
 class Comics extends Component {
 
   constructor(props) {
@@ -25,15 +21,12 @@ class Comics extends Component {
       showModal: false,
       comic: null,
     };
-    //this.handleShow = this.handleShow.bind(this);
-    //this.toggleModal = this.toggleModal.bind(this);
-    // this.handleClose = this.handleClose.bind(this);
+
   } 
 
 
   // this methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
-  // that's a good place to call the API and get the data
 
   componentDidMount = () => {
     // when data is retrieved we update the state
@@ -42,11 +35,11 @@ class Comics extends Component {
 
   }
 
-   toggleModal() {
-      this.setState({
-        showModal: !this.state.showModal
-      });
-    }
+  toggleModal() {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  }
 
 
   // this is called when component is removed from the DOM
@@ -63,27 +56,20 @@ class Comics extends Component {
     });
   }
 
+//Function that handles the API call when the user clicks 
+//a comic,  sets the result in state and sets state so Modal can be shown. 
   handleComic(id) {
-    console.log(id);
     modelInstance.getComic(id).then(comicResults => {
       this.setState({ 
-      comic: comicResults.data.results[0],
-      showModal: true, 
-    });
+        comic: comicResults.data.results[0],
+        showModal: true, 
+      });
     });
     
   }
 
-  handleShow() {
-    this.setState({ 
-      showModal: true,
-    });
-     console.log("handleShow" + this.state.show)
-  }
-
   render() {
     let comicsList = null;
-    console.log("props i comics: " + this.state.showModal);
         
     // depending on the state we either generate
     // useful message to the user or show the list
@@ -102,12 +88,12 @@ class Comics extends Component {
 
                     <Button className="button" onClick={ () => this.handleComic(comic.id)}>
 
-                    <div className="thumb">
-                      <img src={comic.thumbnail.path + "/portrait_fantastic." + comic.thumbnail.extension} alt=""/>
-                      <div className="caption">
-                        <h4 className="title">{comic.title}</h4>
+                      <div className="thumb">
+                        <img src={comic.thumbnail.path + "/portrait_fantastic." + comic.thumbnail.extension} alt=""/>
+                        <div className="caption">
+                          <h4 className="title">{comic.title}</h4>
+                        </div>
                       </div>
-                    </div>
 
                     </Button>
 
@@ -121,8 +107,6 @@ class Comics extends Component {
     }
     return (
       <div className="Comics" key="comics">
-
-
         <div className="row">
           <ComicCard onClick={this.toggleModal.bind(this)} comic={this.state.comic} show={this.state.showModal}/>
         </div>

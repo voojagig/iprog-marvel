@@ -5,9 +5,8 @@ import { modelInstance } from './data/Model'
 
 
 import Welcome from './Welcome/Welcome';
-import Comic from './ComicModal/Comic';
-import ShowOptions from './ShowOptions/ShowOptions';
-import Characters from './Characters/Characters';
+import ShowComics from './ShowComics/ShowComics';
+import ShowCharacters from './ShowCharacters/ShowCharacters';
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Quiz from "./Quiz/Quiz";
@@ -36,8 +35,8 @@ class App extends Component {
           <Route path="/login" exact component={Login}/>
           <Route path="/register" exact component={Register}/>
 
-          <Route path="/comics" render={() => <ShowOptions model={modelInstance}/>}/>
-          <Route path="/characters" render={() => <Characters model={modelInstance}/>}/>
+          <Route path="/comics" render={() => <ShowComics model={modelInstance}/>}/>
+          <Route path="/characters" render={() => <ShowCharacters model={modelInstance}/>}/>
           <Route path="/Quiz" exact component={Quiz}/>
 
         </header>

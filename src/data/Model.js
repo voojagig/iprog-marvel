@@ -13,19 +13,15 @@ const Model = function() {
 		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
 		  
 		// the api deals a lot in ids rather than just the strings you want to use
-		var characterId = '1009718'; // wolverine  
 		var titleStartsWith = 'titleStartsWith=' + startsWithLetter + '&orderBy=title&';                                                                           
 
-		//we have trouble of getting the data from the API.
 		var url = 'http://gateway.marvel.com:80/v1/public/comics?';
 		var finalurl = url + titleStartsWith + 'limit=10&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		// example url: http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150 
-		console.log(finalurl);
-
-		 return fetch(finalurl)
-		 .then(processResponse)
-		 .catch(handleError)
+		return fetch(finalurl)
+		.then(processResponse)
+		.catch(handleError)
 	}
 
 	this.getComic = function(comicId) {
@@ -36,52 +32,51 @@ const Model = function() {
 
 		// you need a new ts every request                                                                                    
 		var ts = new Date().getTime();
-		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-		  
-		// the api deals a lot in ids rather than just the strings you want to use
-		//var characterId = '1009718'; // wolverine  
-		//var titleStartsWith = 'titleStartsWith=' + startsWithLetter + '&orderBy=title&';                                                                           
+		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();                                                                          
 
-		//we have trouble of getting the data from the API.
 		var url = 'http://gateway.marvel.com:80/v1/public/comics/';
 		var finalurl = url + comicId + '?' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
-		// example url: http://gateway.marvel.com/v1/public/comics/ID?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150 
-		console.log(finalurl);
-
-		 return fetch(finalurl)
-		 .then(processResponse)
-		 .catch(handleError)
+		return fetch(finalurl)
+		.then(processResponse)
+		.catch(handleError)
 	}
 
 
-	this.getCharacters = function() {
+	this.getCharacters = function(startsWithLetter) {
 		//comics?titleStartsWith=A&orderBy=title&apiKey...
 		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
 		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';
 
 		// you need a new ts every request                                                                                    
 		var ts = new Date().getTime();
-		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();
-		  
-		// the api deals a lot in ids rather than just the strings you want to use
-		//var characterId = '1009718'; // wolverine  
-		//var series = 'series=' + 'avengers';                                                                           
+		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();                                                                   
+		
+		var nameStartsWith = 'nameStartsWith=' + startsWithLetter + '&orderBy=name&';                                                                           
 
 		//we have trouble of getting the data from the API.
 		var url = 'http://gateway.marvel.com:80/v1/public/characters?';
-		var finalurl = url + 'limit=8&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
+		var finalurl = url + nameStartsWith + 'limit=10&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
-		// example url: http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150 
-		console.log(finalurl);
-
-		 return fetch(finalurl)
-		 .then(processResponse)
-		 .catch(handleError)
+		return fetch(finalurl)
+		.then(processResponse)
+		.catch(handleError)
 	}
+	this.getCharacter = function(Id) {
+		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
+		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';
 
+		// you need a new ts every request                                                                                    
+		var ts = new Date().getTime();
+		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();                                                                         
 
+		var url = 'http://gateway.marvel.com:80/v1/public/characters/';
+		var finalurl = url + Id + '?' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
+		return fetch(finalurl)
+		.then(processResponse)
+		.catch(handleError)
+	}
 
 
 	const processResponse = function(response) {
