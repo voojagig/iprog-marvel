@@ -1,3 +1,6 @@
-#ModalHeader{
-
+.row{
+	margin-left: 20px;
+}
+#ModalTitle{
+	font-size: 32px;
 }

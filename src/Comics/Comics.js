@@ -97,7 +97,6 @@ class Comics extends Component {
         comicsList = <em>Loading...</em>
         break;
       case 'LOADED':
-        console.log(this.props.comics);
           comicsList = this.props.comics.map((comic) =>
                 <div className="col-md-2 col-sm-3 col-xs-4 box" key={comic.id}>
 

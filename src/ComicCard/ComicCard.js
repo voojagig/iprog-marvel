@@ -51,18 +51,30 @@ class ComicCard extends Component {
 
   render() {
     let newComic = null;
-    console.log("props: " + this.props.show);
+    let CharacterTitle = null;
+    let CharacterList = null;
+;
 
     switch (this.props.comic) {
       case null:
         break;
 
       default: 
+        if (this.props.comic.characters.items[0] !== undefined){
+          CharacterTitle = <h2>Characters</h2>;
+
+          console.log(this.props.comic.characters.items[0].name);
+          CharacterList = this.props.comic.characters.items.map((character) =>
+            <p key={character.name}> {character.name} </p>
+          );
+
+        }
+        
         newComic = 
 
         <Modal show={this.props.show}>         
           <Modal.Header>
-            <Modal.Title id='ModalHeader'>{this.props.comic.title}</Modal.Title>
+            <Modal.Title id='ModalTitle'>{this.props.comic.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <div className="row">
@@ -71,7 +83,12 @@ class ComicCard extends Component {
               </div>
               <div className="col-xs-8">
                 <p>{this.props.comic.description}</p>
+
               </div>
+            </div>
+            <div className="row characters">
+              {CharacterTitle}
+              {CharacterList}
             </div>
           </Modal.Body>
 
