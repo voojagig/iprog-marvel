@@ -88,21 +88,20 @@ class ShowOptions extends Component {
       <div className="Comics">
 
         <Navbar location = {this.state.type}/>
-        <h3>Comics</h3>
-
-        {/*Adding buttons for each letter, to browse comics*/}
-        <nav aria-label="Alphabetical navigation">
-          <ul className="pagination justify-content-end">
-            {letterButtons}
-          </ul>
-        </nav>
-        
         <div className="container">
+          {/*Adding buttons for each letter, to browse comics*/}
+          <nav aria-label="Alphabetical navigation">
+            <ul className="pagination justify-content-end">
+              {letterButtons}
+            </ul>
+          </nav>
+        </div>
+        <div className="container page">
           <div className="row row-eq-height">
            <Comics comics = {this.state.results} status = {this.state.status} />
           </div>
         </div>
-        </div>
+      </div>
     
     );
   }

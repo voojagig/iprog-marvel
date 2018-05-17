@@ -37,12 +37,14 @@ class Navbar extends Component {
 			      </ul>
 			    
 			      <ul className="nav navbar-nav navbar-right">
-			        <form className="navbar-form navbar-left">
+			        
+			        {/* Ta bort om vi inte hinner implementera search
+				        <form className="navbar-form navbar-left">
 			        	<div className="form-group">
 			          		<input type="text" className="form-control" placeholder="Search for comics or characters"/>
 			        	</div>
 			        	<button type="submit" className="btn btn-default">Search</button>
-			      	</form>
+			      	</form>*/}
 			        <li className="dropdown">
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
 			          <ul className="dropdown-menu">

@@ -11,5 +11,6 @@
 body{
 	font-family: 'MarvelFont', sans-serif;
 	padding-top: 80px;
+	background: linear-gradient(to right, #d5220f, #ecf0f1, #d5220f);
 
 }

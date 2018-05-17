@@ -63,13 +63,6 @@ class Comics extends Component {
     });
   }
 
-  // handleClose() {
-  //   this.setState({ 
-  //     show: false, 
-  //     comic: null,
-  //   });
-  // } 
-
   handleComic(id) {
     console.log(id);
     modelInstance.getComic(id).then(comicResults => {
@@ -98,7 +91,7 @@ class Comics extends Component {
 
     switch (this.props.status) {
       case 'INITIAL':
-        comicsList = <em>Choose a letter to see comics</em>
+        comicsList = <h3>Choose a letter to see comics</h3>
         break;
       case 'LOADING':
         comicsList = <em>Loading...</em>
@@ -106,14 +99,14 @@ class Comics extends Component {
       case 'LOADED':
         console.log(this.props.comics);
           comicsList = this.props.comics.map((comic) =>
-                <div className="col-md-3 col-sm-4" key={comic.id}>
+                <div className="col-md-2 col-sm-3 col-xs-4 box" key={comic.id}>
 
-                    <Button onClick={ () => this.handleComic(comic.id)}>
+                    <Button className="button" onClick={ () => this.handleComic(comic.id)}>
 
                     <div className="thumb">
                       <img src={comic.thumbnail.path + "/portrait_fantastic." + comic.thumbnail.extension} alt=""/>
                       <div className="caption">
-                        <h4>{comic.title}</h4>
+                        <h4 className="title">{comic.title}</h4>
                       </div>
                     </div>
 
@@ -129,42 +122,13 @@ class Comics extends Component {
     }
     return (
       <div className="Comics" key="comics">
-        <div className="container">
 
 
         <div className="row">
-          <h1>hejhej</h1>
-         {/*} <ComicCard onRequestClose={() => this.handleToggleModal()} comic={this.state.comic} show={this.state.showModal}/>*/}
           <ComicCard onClick={this.toggleModal.bind(this)} comic={this.state.comic} show={this.state.showModal}/>
         </div>
-
-
-
-        <div className="row">
-          {/*<Button  bsStyle="primary" onClick={this.handleShow}>Visa Modal</Button>
-            <Modal show={this.state.show} onHide={this.handleClose} aria-labelledby="ModalHeader">          
-              <Modal.Header closeButton>
-                <Modal.Title id='ModalHeader'>A Title Goes here</Modal.Title>
-              </Modal.Header>
-
-              <Modal.Body>
-                <p>Some Content here</p>
-              </Modal.Body>
-
-              <Modal.Footer>
-                // If you don't have anything fancy to do you can use
-                // the convenient `Dismiss` component, it will
-                // trigger `onHide` when clicked
-              </Modal.Footer>
-            </Modal>*/}
-        </div>
-          <div className="row row-eq-height">
-
-            
-
- 
+        <div className="container-fluid">
             {comicsList}
-          </div>
         </div>
       </div>
     

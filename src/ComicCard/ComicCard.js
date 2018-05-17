@@ -34,11 +34,6 @@ class ComicCard extends Component {
     modelInstance.removeObserver(this);
   }
 
-  // handleClose() {
-  //   this.setState({ 
-  //     show: false, 
-  //   });
-  // } 
 
   // in our update function we modify the state which will
   // cause the component to re-render
@@ -49,10 +44,9 @@ class ComicCard extends Component {
   }
 
 
-    handleClose() {
-    //const { onCloseRequest } = this.props;
-      this.props.onClick();
-    };
+  handleClose() {
+    this.props.onClick();
+  };
   
 
   render() {
@@ -61,21 +55,29 @@ class ComicCard extends Component {
 
     switch (this.props.comic) {
       case null:
-        newComic = <em> inget att se här</em> 
         break;
 
       default: 
         newComic = 
 
-        <Modal show={this.props.show}>
-          
+        <Modal show={this.props.show}>         
           <Modal.Header>
-            <Modal.Title id='ModalHeader'>{this.props.comic.id}</Modal.Title>
+            <Modal.Title id='ModalHeader'>{this.props.comic.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <button onClick={this.handleClose}>Close</button>
+            <div className="row">
+              <div className="col-xs-4 thumbnail">
+                <img src={this.props.comic.thumbnail.path + "/portrait_fantastic." + this.props.comic.thumbnail.extension} alt=""/>
+              </div>
+              <div className="col-xs-8">
+                <p>{this.props.comic.description}</p>
+              </div>
+            </div>
           </Modal.Body>
-          <Modal.Footer>fot</Modal.Footer>
+
+          <Modal.Footer>          
+            <button onClick={this.handleClose}>Close</button>
+        </Modal.Footer>
         </Modal>
 
     };
@@ -84,7 +86,6 @@ class ComicCard extends Component {
     return(
 
       <div>
-        <h2>Welcome to ComicCard</h2>
         {newComic}
       </div>
       );
