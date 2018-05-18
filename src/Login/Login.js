@@ -40,8 +40,9 @@ handleSubmit = async event => {
 }
 
   render() {
+ 
     return (
-      <div className="Login">
+      <div className="Login container">
        <Navbar location = {this.state.type}/>
 
         <form onSubmit={this.handleSubmit}>
