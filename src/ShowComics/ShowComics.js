@@ -86,13 +86,13 @@ class ShowComics extends Component {
               {letterButtons}
             </ul>
           </nav>
-        </div>
-        <div className="container page">
           <div className="row row-eq-height">
            <Comics comics = {this.state.results} status = {this.state.status} />
           </div>
         </div>
       </div>
+      
+
     
     );
   }

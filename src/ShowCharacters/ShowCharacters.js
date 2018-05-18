@@ -79,12 +79,11 @@ class ShowCharacters extends Component {
               {letterButtons}
             </ul>
           </nav>
+            <div className="row row-eq-height">
+             <Characters characters = {this.state.results} status = {this.state.status} />
+            </div>
         </div>
-        <div className="container page">
-          <div className="row row-eq-height">
-           <Characters characters = {this.state.results} status = {this.state.status} />
-          </div>
-        </div>
+
       </div>
     
     );

@@ -1,8 +1,9 @@
 .container{
 	background-color: #ecf0f1;
 	text-align: center;
+	min-height: 500px;
+
 
 }
 .page{
-	min-height: 500px;
 }

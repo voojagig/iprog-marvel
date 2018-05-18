@@ -63,7 +63,6 @@ class ComicCard extends Component {
         if (this.props.comic.characters.items[0] !== undefined){
           CharacterTitle = <h2>Characters</h2>;
 
-          console.log(this.props.comic.characters.items[0].name);
           CharacterList = this.props.comic.characters.items.map((character) =>
             <p key={character.name}> {character.name} </p>
           );

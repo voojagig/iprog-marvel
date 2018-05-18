@@ -1,5 +1,19 @@
+
+.container{
+	background-color: #ecf0f1;
+	text-align: center;
+	min-height: 500px;
+	padding: 20px;
+
+}
 p{
-	font-family: MarvelFont;
 	font-size: 24px;
+	text-align: left;
+
+}
+img{
+	border: 5px solid  #d5220f;
+	width: 110%;
+
 
 }
