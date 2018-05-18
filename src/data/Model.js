@@ -62,7 +62,7 @@ const Model = function() {
 		.then(processResponse)
 		.catch(handleError)
 	}
-		this.getQuizCharacters = function() {
+	this.getQuizCharacters = function() {
 		//comics?titleStartsWith=A&orderBy=title&apiKey...
 		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
 		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';
@@ -74,8 +74,8 @@ const Model = function() {
 
 		//we have trouble of getting the data from the API.
 		var url = 'http://gateway.marvel.com:80/v1/public/characters?';
-		var finalurl = url   + 'limit=30&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
-
+		var finalurl = url   + 'limit=11&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
+		console.log(finalurl);
 		return fetch(finalurl)
 		.then(processResponse)
 		.catch(handleError)

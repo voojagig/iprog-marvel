@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import './Quiz.css';
 import Navbar from '../Navbar/Navbar';
+import Questions from '../Quiz/Questions';
+
 import { modelInstance } from '../data/Model';
 import { Link } from 'react-router-dom';
 var shuffle = require('shuffle-array');
@@ -14,7 +16,7 @@ class Quiz extends Component {
     this.state = {
         title: 'MarvelQuiz',
         type: '/quiz', 
-        results: '',
+        results: [],
         status: 'INITIAL',
     };
   }
@@ -45,50 +47,34 @@ class Quiz extends Component {
     });
 
     this.startQuiz();
+    console.log(this.state.results);
+
   }
   startQuiz() {
     modelInstance.getQuizCharacters().then(Data => {
-      const result = Data.data.results.filter((c) => {
+      let result = Data.data.results.filter((c) => {
         if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
       });
+
       this.setState({
+        results: this.state.results.concat([result]),
         status: 'LOADED',
-        results: result,
+
       });
-
-      var nameList = [];
-      for (let i = 0; i < this.state.results.length; i++) {
-        nameList.push(this.state.results[i].name);
-      }
-      shuffle(nameList);
-
-      for (let i = 0; i < this.state.results.length; i++) {
-        console.log("namn: " + nameList[i]);
-      }
-
-      this.setState({
-        name: nameList
-      });
-
     }).catch(() => {
-    this.setState({
-      status: 'ERROR'
-    });
+      this.setState({
+        status: 'ERROR'
+      });
 
     });
+
     
   }
 
-
-
-
   render() {
-    let quiz = null;
-    var nameList =[];
-    let counter = null;
-    
 
-     switch (this.state.status) {
+    let quiz = null;
+    switch (this.state.status) {
       case 'INITIAL':
       //starting information
         quiz =<div>
@@ -104,39 +90,13 @@ class Quiz extends Component {
         </div></div>
 
         break;
-      case 'LOADING':
-        quiz = <em>Loading...</em>
-        break;
-      case 'LOADED':
-          //pictures prints, needs to be limited to 8 example. 
-          quiz = this.state.results.map((character) =>
-            <div className="col-md-3 col-sm-4" key={character.id}>
-
-                <Button>
-
-                <div className="">
-                  <img src={character.thumbnail.path + "/portrait_fantastic." + character.thumbnail.extension} alt=""/>
-                </div>
-
-                </Button>
-
-            </div>
-          );
-          counter = <p>to be a counter</p>; //figured that we need something that shows users counts, can be implemented when the pictures are clickable
-
-
-          break;
-      default:
-        quiz = <b>Failed to load data, please try again. Verify that you have network connection, please. </b>
-        break;
     }
 
     return (
       <div className="container Quiz">
         <Navbar location = {this.state.type}/>
-        {counter}
         {quiz}
-
+        <Questions status={this.state.status} results={this.state.results}/>
       
       </div>
 
