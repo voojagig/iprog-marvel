@@ -83,7 +83,7 @@ class Characters extends Component {
           characterList = this.props.characters.map((character) =>
                 <div className="col-md-2 col-sm-3 col-xs-4 box" key={character.id}>
 
-                    <Button className="button" onClick={ () => this.handleCharacter(character.id)}>
+                    <Button className="characterButton" onClick={ () => this.handleCharacter(character.id)}>
 
                       <div className="thumb">
                         <img src={character.thumbnail.path + "/portrait_fantastic." + character.thumbnail.extension} alt=""/>

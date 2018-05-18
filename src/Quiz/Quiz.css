@@ -1,14 +1,13 @@
- .card {
- 	width: 100px;
- 	height: 100px;
- 	background-color: lightgray;
- }
+.container{
+	background-color: #ecf0f1;
+	text-align: center;
+	min-height: 700px;
+	padding: 20px;
 
-.board {
-	max-width: 1000px;
-	margin: 20px auto;
 }
-
-.quiz {
-	background-color: grey;
+p{
+	font-size: 25px;
+}
+.center{
+	text-align: center;
 }

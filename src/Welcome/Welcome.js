@@ -58,7 +58,7 @@ class Welcome extends Component {
       default: 
           imgList = this.state.img.map((data) =>
             <div className="col-xs-3" key={data.image.id}>
-              <img src={data.image.thumbnail.path + "/portrait_fantastic." + data.image.thumbnail.extension} className="" alt=""/>
+              <img src={data.image.thumbnail.path + "/portrait_fantastic." + data.image.thumbnail.extension} className="image" alt=""/>
             </div>
           );
         }

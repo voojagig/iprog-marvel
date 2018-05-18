@@ -62,6 +62,24 @@ const Model = function() {
 		.then(processResponse)
 		.catch(handleError)
 	}
+		this.getQuizCharacters = function() {
+		//comics?titleStartsWith=A&orderBy=title&apiKey...
+		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
+		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';
+
+		// you need a new ts every request                                                                                    
+		var ts = new Date().getTime();
+		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();                                                                   
+		
+
+		//we have trouble of getting the data from the API.
+		var url = 'http://gateway.marvel.com:80/v1/public/characters?';
+		var finalurl = url   + 'limit=30&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
+
+		return fetch(finalurl)
+		.then(processResponse)
+		.catch(handleError)
+	}
 	this.getCharacter = function(Id) {
 
 		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
