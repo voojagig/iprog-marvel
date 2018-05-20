@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Welcome.css';
-import Navbar from '../Navbar/Navbar';
+//import Navbar from '../Navbar/Navbar';
 
 class Welcome extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class Welcome extends Component {
         }
     return (
       <div className="Welcome">
-        <Navbar location = {this.state.type}/>
+        {/*<Navbar location = {this.state.type}/>*/}
         <div className="container">
           <div className="row">
             <div className="col-sm-6 col-xs-12">
