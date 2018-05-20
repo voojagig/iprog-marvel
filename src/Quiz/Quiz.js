@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import './Quiz.css';
-import Navbar from '../Navbar/Navbar';
+//import Navbar from '../Navbar/Navbar';
 import Questions from '../Quiz/Questions';
 
 import { modelInstance } from '../data/Model';
@@ -109,7 +109,7 @@ class Quiz extends Component {
 
     return (
       <div className="container Quiz">
-        <Navbar location = {this.state.type}/>
+        {/*<Navbar location = {this.state.type}/>*/}
 
         {quiz}
         <Questions status={this.state.status} results={this.state.results} name={this.state.name} nextName={this.nextName}/>

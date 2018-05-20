@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { modelInstance } from './data/Model'
 import firebase, { auth, provider } from './firebase';
 
-
+import Navbar from './Navbar/Navbar';
 import Welcome from './Welcome/Welcome';
 import ShowComics from './ShowComics/ShowComics';
 import ShowCharacters from './ShowCharacters/ShowCharacters';
@@ -60,7 +60,8 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          {/*<h1 className="App-title jumbotron" >{this.state.title}</h1>*/}
+         
+          <Navbar toLogin={ () => this.login() } location = {this.state.type}/>
           
           {/* We rendered diffrent component based on the path */}
           <Route exact path="/" render={() => <Welcome model={modelInstance}/>}/>

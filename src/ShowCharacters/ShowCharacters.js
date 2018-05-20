@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './ShowCharacters.css';
-import Navbar from '../Navbar/Navbar';
+//import Navbar from '../Navbar/Navbar';
 import Characters from '../Characters/Characters';
 
 
@@ -71,7 +71,7 @@ class ShowCharacters extends Component {
     return (
       <div className="Characters">
 
-        <Navbar location = {this.state.type}/>
+        {/*<Navbar location = {this.state.type}/>*/}
         <div className="container">
           {/*Adding buttons for each letter, to browse characters*/}
           <nav aria-label="Alphabetical navigation">

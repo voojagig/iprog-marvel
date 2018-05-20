@@ -48,7 +48,7 @@ class Navbar extends Component {
 			        <li className="dropdown">
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
 			          <ul className="dropdown-menu">
-			            <li><a href="/login">Log in</a></li>
+			            <li><a onClick={this.props.toLogin} >Log in</a></li>
 			            <li><a href="/register">Register</a></li>
 			            <li><a href="#">Highscore</a></li>
 			            <li><a href="#">Saved characters</a></li>
