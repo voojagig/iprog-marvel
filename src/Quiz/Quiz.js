@@ -17,8 +17,10 @@ class Quiz extends Component {
         title: 'MarvelQuiz',
         type: '/quiz', 
         results: [],
+        name: [],
         status: 'INITIAL',
     };
+    this.nextName = this.nextName.bind(this);
   }
 
 
@@ -38,7 +40,6 @@ class Quiz extends Component {
   // in our update function we modify the state which will
   // cause the component to re-render
   update() {
-    //this.loadData();
   }
 
   handleClick() {
@@ -47,7 +48,6 @@ class Quiz extends Component {
     });
 
     this.startQuiz();
-    console.log(this.state.results);
 
   }
   startQuiz() {
@@ -55,9 +55,17 @@ class Quiz extends Component {
       let result = Data.data.results.filter((c) => {
         if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
       });
+      //gets all the names from the characters in result in a list
+      let nameList = [];
+      for (let i = 0; i < result.length; i++) {
+        nameList.push(result[i].name);
+      }
+      //suffles the names
+      shuffle(nameList);
 
       this.setState({
         results: this.state.results.concat([result]),
+        name: this.state.name.concat([nameList])[0],
         status: 'LOADED',
 
       });
@@ -69,6 +77,13 @@ class Quiz extends Component {
     });
 
     
+  }
+  nextName(names) {
+    var array = [...names];// make a separate copy of the array
+    array.splice(0,1);
+    this.setState({
+      name: array,
+    });
   }
 
   render() {
@@ -95,8 +110,9 @@ class Quiz extends Component {
     return (
       <div className="container Quiz">
         <Navbar location = {this.state.type}/>
+
         {quiz}
-        <Questions status={this.state.status} results={this.state.results}/>
+        <Questions status={this.state.status} results={this.state.results} name={this.state.name} nextName={this.nextName}/>
       
       </div>
 

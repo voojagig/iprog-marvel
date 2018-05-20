@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './Comics.css';
 import { modelInstance } from '../data/Model'
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import Modal from 'react-bootstrap/lib/Modal'
-import ModalHeader from 'react-bootstrap/lib/ModalHeader';
-import ModalBody from 'react-modal';
-import PropTypes from 'prop-types';
 import ComicCard from '../ComicCard/ComicCard';
 
 

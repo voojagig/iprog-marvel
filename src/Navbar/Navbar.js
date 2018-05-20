@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import { Link, nav} from 'react-router-dom';
+import { nav} from 'react-router-dom';
 import { modelInstance } from '../data/Model'
 
 class Navbar extends Component {

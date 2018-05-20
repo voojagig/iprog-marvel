@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
 import './Characters.css';
 import { modelInstance } from '../data/Model'
-import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import { ButtonToolbar } from 'react-bootstrap';
-import Modal from 'react-bootstrap/lib/Modal'
-import ModalHeader from 'react-bootstrap/lib/ModalHeader';
-import ModalBody from 'react-modal';
-import PropTypes from 'prop-types';
 import CharacterCard from '../CharacterCard/CharacterCard';
 
 class Characters extends Component {

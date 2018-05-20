@@ -29,7 +29,7 @@ class ShowCharacters extends Component {
 
   loadData(startsWithLetter){
     this.props.model.getCharacters(startsWithLetter).then(Data => {
-      const result = Data.data.results.filter((c) => {
+      let result = Data.data.results.filter((c) => {
         if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
       });
       this.setState({
