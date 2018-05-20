@@ -22,7 +22,38 @@ class App extends Component {
     super(props)
     this.state = {
       title: 'MarvelQuiz',
-    }
+      user: null
+  }
+
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
+  }
+
+  logout() {
+    auth.signOut()
+      .then(() => {
+        this.setState({
+          user: null
+        });
+      });
+  }
+
+  login() {
+    auth.signInWithPopup(provider)
+      .then((result) => {
+        const user = result.user;
+        this.setState({
+          user
+      });
+    });
+  }
+
+  componentDidMount() {
+     auth.onAuthStateChanged((user) => {
+    if (user) {
+      this.setState({ user });
+    } 
+  });
   }
 
   render() {
@@ -41,6 +72,21 @@ class App extends Component {
           <Route path="/Quiz" exact component={Quiz}/>
 
         </header>
+
+        <div className="wrapper">
+          {this.state.user ?
+            <div>
+              <h2>Välkommen in! {this.state.user.email} </h2>
+              <button onClick={this.logout}>Log Out</button>
+            </div>
+            
+            :
+            <div>
+              <h2>Du är ej inloggad</h2>
+              <button onClick={this.login}>Log in</button>
+            </div>
+          }
+        </div>
      
       </div>
     );
