@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import { modelInstance } from './data/Model'
+import firebase, { auth, provider } from './firebase';
 
 
 import Welcome from './Welcome/Welcome';

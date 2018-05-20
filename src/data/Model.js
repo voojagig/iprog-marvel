@@ -15,7 +15,7 @@ const Model = function() {
 		// the api deals a lot in ids rather than just the strings you want to use
 		var titleStartsWith = 'titleStartsWith=' + startsWithLetter + '&orderBy=title&';                                                                           
 
-		var url = 'http://gateway.marvel.com:80/v1/public/comics?';
+		var url = 'https://gateway.marvel.com:443/v1/public/comics?';
 		var finalurl = url + titleStartsWith + 'limit=20&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		// example url: http://gateway.marvel.com/v1/public/comics?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150 
@@ -34,7 +34,7 @@ const Model = function() {
 		var ts = new Date().getTime();
 		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();                                                                          
 
-		var url = 'http://gateway.marvel.com:80/v1/public/comics/';
+		var url = 'https://gateway.marvel.com:443/v1/public/comics/';
 		var finalurl = url + comicId + '?' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		return fetch(finalurl)
@@ -55,7 +55,7 @@ const Model = function() {
 		var nameStartsWith = 'nameStartsWith=' + startsWithLetter + '&orderBy=name&';                                                                           
 
 		//we have trouble of getting the data from the API.
-		var url = 'http://gateway.marvel.com:80/v1/public/characters?';
+		var url = 'https://gateway.marvel.com:443/v1/public/characters?';
 		var finalurl = url + nameStartsWith + 'limit=20&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		return fetch(finalurl)
@@ -72,7 +72,7 @@ const Model = function() {
 		var ts = new Date().getTime();
 		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();                                                                         
 
-		var url = 'http://gateway.marvel.com:80/v1/public/characters/';
+		var url = 'https://gateway.marvel.com:443/v1/public/characters/';
 		var finalurl = url + Id + '?' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		return fetch(finalurl)
@@ -91,7 +91,7 @@ const Model = function() {
 		
 
 		//we have trouble of getting the data from the API.
-		var url = 'http://gateway.marvel.com:80/v1/public/characters?';
+		var url = 'https://gateway.marvel.com:443/v1/public/characters?';
 		var finalurl = url   + 'limit=11&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		return fetch(finalurl)
