@@ -61,7 +61,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
          
-          <Navbar toLogin={ () => this.login() } location = {this.state.type}/>
+          <Navbar toLogin={ () => this.login() } toLogout={ () => this.logout() } location = {this.state.type} user={this.state.user}/>
           
           {/* We rendered diffrent component based on the path */}
           <Route exact path="/" render={() => <Welcome model={modelInstance}/>}/>
