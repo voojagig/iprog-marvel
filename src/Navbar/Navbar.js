@@ -13,11 +13,6 @@ class Navbar extends Component {
 	    };
 
   	}
-
-  	componentDidUpdate() {
-	}
-
-
   render() {
 
   	let knapp = null;
@@ -71,7 +66,7 @@ class Navbar extends Component {
 			           			            
 			            <li><a href="/register">Register</a></li>
 			            <li><a href="#">Highscore</a></li>
-			            <li><a href="#">Saved characters</a></li>
+			            <li><a href="/saved">Saved characters</a></li>
 			            <li role="separator" className="divider"></li>
 			          </ul>
 			        </li>
