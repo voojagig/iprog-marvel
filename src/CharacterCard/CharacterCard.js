@@ -60,7 +60,7 @@ class CharacterCard extends Component {
         	ComicsTitle = <h2>Comics</h2>;
 
           	ComicsList = this.props.character.comics.items.map((comic) =>
-            	<p key={comic.name}> {comic.name} </p>
+            	<p key={comic.name} className="left"> {comic.name} </p>
           	);
         }
         newCharacter = 

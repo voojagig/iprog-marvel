@@ -12,6 +12,7 @@
     "react": "^16.2.0",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
+    "react-icons": "^2.2.7",
     "react-modal": "^3.4.4",
     "react-native-local-mongodb": "^2.1.0",
     "react-router-dom": "^4.2.2",

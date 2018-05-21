@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import './ComicCard.css';
 import { modelInstance } from '../data/Model';
 import Modal from 'react-bootstrap/lib/Modal';
+import { Button } from 'react-bootstrap';
 
+import star from "./star.png"
+import fullStar from "./star-filled.png"
 
+//Credits
+//<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+//<div>Icons made by <a href="https://www.flaticon.com/authors/google" title="Google">Google</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
 class ComicCard extends Component {
 
@@ -13,9 +19,12 @@ class ComicCard extends Component {
       status: 'INITIAL',
       comic: null,
       show: this.props.show,
+      icon: MdStarOutline
     }
 
     this.handleClose = this.handleClose.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+
     
   }
 
@@ -47,6 +56,24 @@ class ComicCard extends Component {
   handleClose() {
     this.props.onClick();
   };
+  handleClick(comic, event){
+    //i comics:
+      //om man inte är inloggad ska knappen inte finnas där. 
+      //kolla om comics är sparad sen tidigare. skicka med props som beskriver dessa. 
+    //checks if comic is saved, if not it marks the star and saves into databas. 
+    console.log(event.target.src);
+    if(event.target.src === star){
+      event.target.src = fullStar;
+      //save comic in database
+
+    }
+    //if it is saved before we will 'unsave' it.
+    else{
+      event.target.src = fullStar;
+
+      
+    }
+  }
   
 
   render() {
@@ -64,7 +91,7 @@ class ComicCard extends Component {
           CharacterTitle = <h2>Characters</h2>;
 
           CharacterList = this.props.comic.characters.items.map((character) =>
-            <p key={character.name}> {character.name} </p>
+            <p key={character.name} className="left"> {character.name} </p>
           );
 
         }
@@ -73,7 +100,14 @@ class ComicCard extends Component {
 
         <Modal show={this.props.show}>         
           <Modal.Header>
-            <Modal.Title id='ModalTitle'>{this.props.comic.title}</Modal.Title>
+            <div className="row">
+              <div className="col-xs-10">
+                <Modal.Title id='ModalTitle'>{this.props.comic.title}</Modal.Title>
+              </div>
+              <div className="col-xs-2">
+              <button><img src={star} alt="" onClick={this.handleClick.bind(this, this.props.comic)} /></button>
+              </div>
+            </div>
           </Modal.Header>
           <Modal.Body>
             <div className="row">
