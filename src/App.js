@@ -72,7 +72,7 @@ class App extends Component {
           <Route path="/comics" render={() => <ShowComics model={modelInstance}/>}/>
           <Route path="/characters" render={() => <ShowCharacters model={modelInstance}/>}/>
           <Route path="/Quiz" exact component={Quiz}/>
-          <Route path="/saved" render={() => <Saved model={modelInstance} user={this.state.user}/>} />
+          <Route path="/saved" render={() => <Saved model={modelInstance}/>} />
 
         </header>
 
