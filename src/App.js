@@ -11,6 +11,7 @@ import ShowCharacters from './ShowCharacters/ShowCharacters';
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Quiz from "./Quiz/Quiz";
+import Saved from "./Saved/Saved";
 
 
 
@@ -71,6 +72,7 @@ class App extends Component {
           <Route path="/comics" render={() => <ShowComics model={modelInstance}/>}/>
           <Route path="/characters" render={() => <ShowCharacters model={modelInstance}/>}/>
           <Route path="/Quiz" exact component={Quiz}/>
+          <Route path="/saved" render={() => <Saved model={modelInstance} user={this.state.user}/>} />
 
         </header>
 

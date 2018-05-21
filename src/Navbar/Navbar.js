@@ -13,13 +13,19 @@ class Navbar extends Component {
 	    };
 
   	}
-
-  	componentDidUpdate() {
- 		this.state.user = this.props.user
-  	}
-
-
   render() {
+
+  	let knapp = null;
+
+  	{this.props.user ? 
+
+  		//console.log(this.state.user)
+  		knapp = 
+  			<a onClick={this.props.toLogout} >Log out</a>  		
+  		:
+  		knapp = 
+  			<a onClick={this.props.toLogin} >Log in</a>	
+  	}
 
     return (
     	<nav className="navbar navbar-default navbar-fixed-top">
@@ -55,19 +61,13 @@ class Navbar extends Component {
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
 			          <ul className="dropdown-menu">
 			           <li>
-				   		<a onClick={this.props.toLogin} >Log in</a>
+				   		{knapp}
 			           </li>
-			           <li>
-				   		<a onClick={this.props.toLogout} >Log out</a>
-			           </li>
-			          
-			            
-			            
+			           			            
 			            <li><a href="/register">Register</a></li>
 			            <li><a href="#">Highscore</a></li>
-			            <li><a href="#">Saved characters</a></li>
+			            <li><a href="/saved">Saved characters</a></li>
 			            <li role="separator" className="divider"></li>
-			            <li><a href="#">Log out</a></li>
 			          </ul>
 			        </li>
 			      </ul>
