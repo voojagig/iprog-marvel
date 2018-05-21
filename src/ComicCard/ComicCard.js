@@ -19,7 +19,6 @@ class ComicCard extends Component {
       status: 'INITIAL',
       comic: null,
       show: this.props.show,
-      icon: MdStarOutline
     }
 
     this.handleClose = this.handleClose.bind(this);
