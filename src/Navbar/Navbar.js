@@ -60,14 +60,15 @@ class Navbar extends Component {
 			        <li className="dropdown">
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
 			          <ul className="dropdown-menu">
-			           <li>
-				   		{knapp}
-			           </li>
+			           
 			           			            
 			            <li><a href="/register">Register</a></li>
 			            <li><a href="#">Highscore</a></li>
 			            <li><a href="/saved">Saved characters</a></li>
 			            <li role="separator" className="divider"></li>
+			            <li>
+				   		{knapp}
+			           </li>
 			          </ul>
 			        </li>
 			      </ul>
