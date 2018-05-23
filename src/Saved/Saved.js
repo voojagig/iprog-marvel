@@ -40,8 +40,11 @@ class Saved extends Component {
   }
   render() {
 
+    var user = firebase.auth().currentUser;
+
     let knapp = null;
-    {this.props.user ? 
+
+    {user ? 
       knapp = 
         <h2>Comics: {this.state.Comics}</h2>
       :
