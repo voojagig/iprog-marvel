@@ -42,15 +42,13 @@ var enablePersistenceOn = false;
   var firestoreDB = {};
 
   // USERS
-  firestoreDB.saveComic = async function(comicTitle) {
+  firestoreDB.saveCharacter = async function(character) {
     var db = await getDB();
     var user = firebase.auth().currentUser; //gets the current users information from firebase
     var uid = user.uid;
-    console.log(user.email);
     console.log(uid);
-    //doc should be user.uid, so that every user as a doc with data/fields
-    return(db.collection("users").doc(uid).set({
-      comic: comicTitle,
+    return(db.collection("users").doc(uid).collection("characters").add({
+      character: character.name,
     }).then(function() {
     console.log("Document successfully written!");
     }).catch(function(error) {
@@ -58,14 +56,23 @@ var enablePersistenceOn = false;
     }));
   }
 
-  firestoreDB.getSavedComic = async function() {
+  firestoreDB.getSavedCharacter = async function() {
     console.log("i get saved comics")
     var db = await getDB();
     var user = firebase.auth().currentUser; //gets the current users information from firebase
     var uid = user.uid;
     console.log(uid)
+    let output = null;
+    return(
+    db.collection("users").doc(uid).collection("characters").get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.data());
+    });
+    }));
 
-    db.collection("users").doc(uid).get().then(function(doc) {
+
+    /*db.collection("users").doc(uid).get().then(function(doc) {
       console.log(doc)
       if(doc.exists){
         console.log("doc data ". doc.data());
@@ -78,7 +85,7 @@ var enablePersistenceOn = false;
     }).catch(function(error){
         console.log("error: ", error)
 
-    });  
+    }); */ 
   }
 
   //  EXAMPLE FUNCTIONS:   TEAMS

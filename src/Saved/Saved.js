@@ -29,14 +29,14 @@ class Saved extends Component {
   }
 
   getSavedItems(){
-    
-    let comic = firestoreDB.getSavedComic();
-    console.log(comic);
+    console.log("i get saved items");
+    let character = firestoreDB.getSavedCharacter();
+    console.log("returned from database: " + character);
     this.setState({
-      Comics: comic.title,
+      character: character,
       
     });
-    console.log(this.state.Comics);
+    console.log("i state: " + this.state.character);
   }
   render() {
 
