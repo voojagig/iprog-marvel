@@ -50,13 +50,6 @@ class Navbar extends Component {
 			    
 			      <ul className="nav navbar-nav navbar-right">
 			        
-			        {/* Ta bort om vi inte hinner implementera search
-				        <form className="navbar-form navbar-left">
-			        	<div className="form-group">
-			          		<input type="text" className="form-control" placeholder="Search for comics or characters"/>
-			        	</div>
-			        	<button type="submit" className="btn btn-default">Search</button>
-			      	</form>*/}
 			        <li className="dropdown">
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
 			          <ul className="dropdown-menu">
@@ -64,7 +57,7 @@ class Navbar extends Component {
 			           			            
 			            <li><a href="/register">Register</a></li>
 			            <li><a href="#">Highscore</a></li>
-			            <li><a href="/saved">Saved characters</a></li>
+			            <li hidden={(this.props.user === null) ? true : false}><a href="/saved" >Saved characters</a></li>
 			            <li role="separator" className="divider"></li>
 			            <li>
 				   		{knapp}

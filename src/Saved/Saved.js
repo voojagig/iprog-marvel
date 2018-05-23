@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './Saved.css';
 import firebase, { auth, provider } from '../firebase';
+import firestoreDB from '../data/database';
 
 
 class Saved extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      Comics: null,
+      Characters: null,
     };
   }
 
@@ -14,6 +17,8 @@ class Saved extends Component {
     // when data is retrieved we update the state
     // this will cause the component to re-render
     this.props.model.addObserver(this); 
+    this.getSavedItems();    
+
   }
   
 
@@ -23,14 +28,22 @@ class Saved extends Component {
     this.props.model.removeObserver(this)
   }
 
-  
+  getSavedItems(){
+    
+    let comic = firestoreDB.getSavedComic();
+    console.log(comic);
+    this.setState({
+      Comics: comic.title,
+      
+    });
+    console.log(this.state.Comics);
+  }
   render() {
 
     let knapp = null;
-
     {this.props.user ? 
       knapp = 
-        <h2>Massa hjältar</h2>
+        <h2>Comics: {this.state.Comics}</h2>
       :
       knapp = 
         <h2>Ingenting alls</h2>

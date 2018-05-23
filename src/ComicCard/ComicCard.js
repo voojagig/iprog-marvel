@@ -2,10 +2,15 @@ import React, { Component } from 'react';
 import './ComicCard.css';
 import { modelInstance } from '../data/Model';
 import Modal from 'react-bootstrap/lib/Modal';
-import { Button } from 'react-bootstrap';
+import { Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
+
 
 import star from "./star.png"
 import fullStar from "./star-filled.png"
+import firestoreDB from '../data/database';
+import firebase from '../firebase.js';
+
+      
 
 //Credits
 //<div>Icons made by <a href="http://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
@@ -60,18 +65,17 @@ class ComicCard extends Component {
       //om man inte är inloggad ska knappen inte finnas där. 
       //kolla om comics är sparad sen tidigare. skicka med props som beskriver dessa. 
     //checks if comic is saved, if not it marks the star and saves into databas. 
-    console.log(event.target.src);
-    if(event.target.src === star){
-      event.target.src = fullStar;
-      //save comic in database
-
-    }
-    //if it is saved before we will 'unsave' it.
-    else{
-      event.target.src = fullStar;
-
-      
-    }
+      if(event.target.src === star){
+        event.target.src = fullStar;
+        //save comic in database
+        firestoreDB.saveComic(comic)
+        //current user store comic.name
+      //if it is saved before we will 'unsave' it.
+      }
+      else{
+        event.target.src = star;
+        //remove saved data in database
+      }
   }
   
 
@@ -79,7 +83,8 @@ class ComicCard extends Component {
     let newComic = null;
     let CharacterTitle = null;
     let CharacterList = null;
-;
+    let user = firebase.auth().currentUser; //gets the current users information from firebase
+    let tooltip = null;
 
     switch (this.props.comic) {
       case null:
@@ -94,6 +99,16 @@ class ComicCard extends Component {
           );
 
         }
+    
+    switch (user){
+      case null:
+        tooltip = <Tooltip id="modal-tooltip">You must log in to save comics.</Tooltip>;
+        break;
+      default: 
+        tooltip = <Tooltip id="modal-tooltip">Save comic</Tooltip>;
+        break;
+    }
+
         
         newComic = 
 
@@ -104,7 +119,10 @@ class ComicCard extends Component {
                 <Modal.Title id='ModalTitle'>{this.props.comic.title}</Modal.Title>
               </div>
               <div className="col-xs-2">
-              <button><img src={star} alt="" onClick={this.handleClick.bind(this, this.props.comic)} /></button>
+              
+              <OverlayTrigger overlay={tooltip}>
+                <Button onClick={this.handleClick.bind(this, this.props.comic)} disabled={(user === null) ? true : false}><img src={star} alt="" /></Button>
+              </OverlayTrigger>
               </div>
             </div>
           </Modal.Header>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Route } from 'react-router-dom';
 import { modelInstance } from './data/Model'
-import firebase, { auth, provider } from './firebase';
+import firebase, { auth } from './firebase';
 
 import Navbar from './Navbar/Navbar';
 import Welcome from './Welcome/Welcome';
@@ -14,6 +14,7 @@ import Quiz from "./Quiz/Quiz";
 import Saved from "./Saved/Saved";
 
 
+var provider = new firebase.auth.GoogleAuthProvider();
 
 
 
@@ -45,8 +46,10 @@ class App extends Component {
         const user = result.user;
         this.setState({
           user
-      });
+        });
+
     });
+
   }
 
   componentDidMount() {
