@@ -3,6 +3,7 @@ import './Characters.css';
 import { modelInstance } from '../data/Model'
 import { Button } from 'react-bootstrap';
 import CharacterCard from '../CharacterCard/CharacterCard';
+import firestoreDB from '../data/database';
 
 class Characters extends Component {
 
@@ -12,8 +13,11 @@ class Characters extends Component {
       type: '/characters',
       showModal: false,
       character: null,
+      isSaved: false,
 
     };
+    this.checkIfSaved = this.checkIfSaved.bind(this);
+
   }
 
   // this methods is called by React lifecycle when the 
@@ -49,18 +53,50 @@ class Characters extends Component {
 //Function that handles the API call when the user clicks on 
 //a character,  sets the result in state and sets state so Modal can be shown. 
   handleCharacter(id) {
+
     modelInstance.getCharacter(id).then(characterResults => {
       this.setState({ 
         character: characterResults.data.results[0],
-        showModal: true, 
       });
     });
-    
+    this.checkIfSaved(id);
+ 
+
+  }
+    checkIfSaved(id){
+      let result = [];
+
+      firestoreDB.getSavedCharacter().then(querySnapshot => {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          result.push(doc.data().character); 
+        });
+
+        if(result.length > 0){
+          for(let i=0; i < result.length; i++){
+            if(result[i].id === id){
+              this.setState({
+                isSaved: true,
+                showModal: true, 
+              });
+              return;
+            }
+          }
+        }
+        this.setState({ 
+          isSaved: false,
+          showModal: true, 
+        });
+        return;
+
+      }).catch(() => {
+      });
+
   }
 
   render() {
     let characterList = null;
-        
+
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned comics
@@ -97,7 +133,7 @@ class Characters extends Component {
     return (
       <div className="Character" key="character">
         <div className="row">
-          <CharacterCard onClick={this.toggleModal.bind(this)} character={this.state.character} show={this.state.showModal}/>
+          <CharacterCard onClick={this.toggleModal.bind(this)} character={this.state.character} show={this.state.showModal} isSaved={this.state.isSaved}/>
         </div>
         <div className="container-fluid">
             {characterList}

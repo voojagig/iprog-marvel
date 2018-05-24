@@ -41,7 +41,7 @@ var enablePersistenceOn = false;
   }
   var firestoreDB = {};
 
-  // USERS
+  // saves character on the current users "profile" in the database
   firestoreDB.saveCharacter = async function(character) {
     var db = await getDB();
     var user = firebase.auth().currentUser; //gets the current users information from firebase
@@ -55,30 +55,42 @@ var enablePersistenceOn = false;
       console.error("Error writing document: ", error);
     }));
   }
-
+  // gets the saved characters (only the ones that the current user has saved).
   firestoreDB.getSavedCharacter = async function() {
-    console.log("i get saved comics")
     var db = await getDB();
     var user = firebase.auth().currentUser; //gets the current users information from firebase
     var uid = user.uid;
   
     return db.collection("users").doc(uid).collection("characters").get();
-
-    /*db.collection("users").doc(uid).get().then(function(doc) {
-      console.log(doc)
-      if(doc.exists){
-        console.log("doc data ". doc.data());
-        return doc.data();
-
-      }
-      else{ 
-        console.log("no such doc.")
-      }
-    }).catch(function(error){
-        console.log("error: ", error)
-
-    }); */ 
   }
+  //removes a character from the database
+  firestoreDB.deleteCharacter = async function(character){
+    var db = await getDB();
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+
+    //return db.collection("users").doc(uid).collection("characters").doc(character).delete();
+
+    let collectionRef = db.collection("users").doc(uid).collection("characters");
+    console.log(character.id)
+    collectionRef.where("id", "==", character.id).get()
+    .then(querySnapshot => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.delete().then(() => {
+          console.log("Document successfully deleted!");
+        }).catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+      });
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
+    return
+  }
+
+
+
 
   //  EXAMPLE FUNCTIONS:   TEAMS
   firestoreDB.addTeam = async function(name, logo) {

@@ -61,19 +61,6 @@ class Saved extends Component {
 
       });
 
-
-
-        /*characterData.forEach(function(doc) {
-          character.push({
-            name: doc.name,
-            //img: doc.thumbnail.path + "/portrait_fantastic." + doc.thumbnail.extension,
-            //id: doc.id,
-            ...doc.data(),
-          })
-        });*/
-
-      
-
   }
   render() {
 

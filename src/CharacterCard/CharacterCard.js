@@ -66,13 +66,13 @@ class CharacterCard extends Component {
       if(event.target.src === star){
         event.target.src = fullStar;
         //save comic in database
-        firestoreDB.saveCharacter(character)
-        //current user store comic.name
-      //if it is saved before we will 'unsave' it.
+        firestoreDB.saveCharacter(character);
       }
       else{
+        //removes saved data in database
+        firestoreDB.deleteCharacter(character);
         event.target.src = star;
-        //remove saved data in database
+
       }
   }
 
@@ -95,12 +95,12 @@ class CharacterCard extends Component {
             	<p key={comic.name} className="left"> {comic.name} </p>
           	);
         }
-      switch (user){
-        case null:
-          tooltip = <Tooltip id="modal-tooltip">You must log in to save comics.</Tooltip>;
+      switch (this.props.isSaved){
+        case true:
+          tooltip = <Tooltip id="modal-tooltip">Remove character from favorites</Tooltip>;
           break;
-        default: 
-          tooltip = <Tooltip id="modal-tooltip">Save comic</Tooltip>;
+        case false: 
+          tooltip = <Tooltip id="modal-tooltip">Save character</Tooltip>;
           break;
       }
         newCharacter = 
@@ -113,7 +113,9 @@ class CharacterCard extends Component {
               </div>
               <div className="col-xs-2">  
                 <OverlayTrigger overlay={tooltip}>
-                  <Button onClick={this.handleClick.bind(this, this.props.character)} disabled={(user === null) ? true : false}><img src={star} alt="" /></Button>
+                  <div>
+                    <Button onClick={this.handleClick.bind(this, this.props.character)} disabled={(user === null) ? true : false}><img src={this.props.isSaved ? fullStar : star} alt="" /></Button>
+                  </div>
                 </OverlayTrigger>
       
               </div>
