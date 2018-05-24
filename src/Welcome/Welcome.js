@@ -7,7 +7,7 @@ class Welcome extends Component {
     super(props);
     this.state = {
         title: 'MarvelQuiz',
-        type: '/',
+        type: '/home',
         img: '',
         showImg: false,
 

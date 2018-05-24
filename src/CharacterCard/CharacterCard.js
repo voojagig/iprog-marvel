@@ -28,7 +28,8 @@ class CharacterCard extends Component {
     }
 
     this.handleClose = this.handleClose.bind(this);
-    
+    this.handleClick = this.handleClick.bind(this);
+
   }
 
   componentDidMount = () => {
@@ -56,7 +57,7 @@ class CharacterCard extends Component {
 
   handleClose() {
     this.props.onClick();
-  };
+  }
   handleClick(character, event){
     //i character:
       //om man inte är inloggad ska knappen inte finnas där. 

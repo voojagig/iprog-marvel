@@ -54,7 +54,6 @@ class Characters extends Component {
         character: characterResults.data.results[0],
         showModal: true, 
       });
-      console.log(this.state.character);
     });
     
   }

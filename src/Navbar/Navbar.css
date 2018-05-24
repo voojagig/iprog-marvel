@@ -31,7 +31,7 @@
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #ffbbbc;
+  color: black;
   background-color: #e2584a;
 }
 .navbar-default .navbar-toggle {
@@ -68,8 +68,6 @@
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-    color: #ffbbbc;
-    background-color: #e2584a;
   }
 }
 .navbar-brand{
@@ -77,4 +75,8 @@
 }
 .dropdown{
   padding-right: 20px;
+}
+.active {
+  color: #ffbbbc;     
+  background-color: #e2584a;    /* Lighter red */
 }

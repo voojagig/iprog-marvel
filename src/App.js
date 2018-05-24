@@ -58,6 +58,7 @@ class App extends Component {
       this.setState({ user });
     } 
   });
+  this.setState({type: Route.path})
   }
 
   render() {
@@ -68,7 +69,7 @@ class App extends Component {
           <Navbar toLogin={ () => this.login() } toLogout={ () => this.logout() } location = {this.state.type} user={this.state.user}/>
           
           {/* We rendered diffrent component based on the path */}
-          <Route exact path="/" render={() => <Welcome model={modelInstance}/>}/>
+          <Route exact path="/home" render={() => <Welcome model={modelInstance}/>}/>
           <Route path="/login" exact component={Login}/>
           <Route path="/register" exact component={Register}/>
 

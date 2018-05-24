@@ -1,33 +1,42 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import { nav} from 'react-router-dom';
+import { nav, NavLink, Link} from 'react-router-dom';
 import { modelInstance } from '../data/Model'
+
 
 class Navbar extends Component {
 	constructor(props) {
 		super(props)
 	    this.state = {
 	      status: 'INITIAL',
-	      user: this.props.user
+	      user: this.props.user,
+	      
 
-	    };
-
+	 	}	
+	 	this.handleLocation = this.handleLocation.bind(this);
+	}
+  	handleLocation (loc, e) {
+  		e.stopPropagation();
+  		let location = loc;
+  		alert(location);
+	  	this.setState({
+	  		location: location,
+	  	});
+	  	alert(this.state.location)
   	}
-  render() {
+  	render() {
+	  	let knapp = null;
 
-  	let knapp = null;
+	  	{this.props.user ? 
 
-  	{this.props.user ? 
-
-  		//console.log(this.state.user)
-  		knapp = 
-  			<a onClick={this.props.toLogout} >Log out</a>  		
-  		:
-  		knapp = 
-  			<a onClick={this.props.toLogin} >Log in</a>	
-  	}
-
-    return (
+	  		//console.log(this.state.user)
+	  		knapp = 
+	  			<a onClick={this.props.toLogout} >Log out</a>  		
+	  		:
+	  		knapp = 
+	  			<a onClick={this.props.toLogin} >Log in</a>	
+	  	}
+	return (
     	<nav className="navbar navbar-default navbar-fixed-top">
  			<div id="myNavbar" className="container-fluid">
 	 			<div className="navbar-header">
@@ -42,10 +51,10 @@ class Navbar extends Component {
 
 			    <div className="collapse navbar-collapse" id="navbar-collapse-1">
 			      <ul className="nav navbar-nav">
-			      	<li className={(this.props.location === '/') ? 'active' : ''}><a href="/">Home</a></li>
-			        <li className={(this.props.location === '/comics') ? 'active' : '' }><a href="/comics">Comics</a></li>
-			        <li className={(this.props.location === '/characters') ? 'active' : ''}><a href="/characters">Characters</a></li>
-			        <li className={(this.props.location === '/quiz') ? 'active' : ''}><a href="/Quiz">Quiz</a></li>
+			      	<li><NavLink to="/home" activeClassName="active">Home</NavLink></li>
+			        <li><NavLink to="/comics" activeClassName="active">Comics</NavLink></li>
+			        <li><NavLink to="/characters" activeClassName="active">Characters</NavLink></li>
+			        <li><NavLink to="/Quiz" activeClassName="active">Quiz</NavLink></li>
 			      </ul>
 			    
 			      <ul className="nav navbar-nav navbar-right">
@@ -54,10 +63,9 @@ class Navbar extends Component {
 			          <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account<span className="caret"></span></a>
 			          <ul className="dropdown-menu">
 			           
-			           			            
-			            <li><a href="/register">Register</a></li>
-			            <li><a href="#">Highscore</a></li>
-			            <li hidden={(this.props.user === null) ? true : false}><a href="/saved" >Saved characters</a></li>
+			           	{/*only show higscore and saved characters option when user is logged in. */}
+			            <li hidden={(this.props.user === null) ? true : false}><NavLink to="#"activeclassname="active">Highscore</NavLink></li>
+			            <li hidden={(this.props.user === null) ? true : false}><NavLink to="/saved" activeclassname="active">Saved characters</NavLink></li>
 			            <li role="separator" className="divider"></li>
 			            <li>
 				   		{knapp}

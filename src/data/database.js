@@ -62,7 +62,6 @@ var enablePersistenceOn = false;
     var user = firebase.auth().currentUser; //gets the current users information from firebase
     var uid = user.uid;
     console.log(uid)
-    let output = null;
     return(
     db.collection("users").doc(uid).collection("characters").get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
