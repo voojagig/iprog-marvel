@@ -2,15 +2,19 @@ import React, { Component } from 'react';
 import './Saved.css';
 import firebase, { auth, provider } from '../firebase';
 import firestoreDB from '../data/database';
+import SavedCharacters from './SavedCharacters';
+
 
 
 class Saved extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Comics: null,
-      Characters: null,
+      result: [],
+      status: 'INITIAL'
+
     };
+    this.getSavedItems = this.getSavedItems.bind(this);
   }
 
   componentDidMount = () => {
@@ -29,34 +33,57 @@ class Saved extends Component {
   }
 
   getSavedItems(){
-    console.log("i get saved items");
-    let character = firestoreDB.getSavedCharacter();
-    console.log("returned from database: " + character);
-    this.setState({
-      character: character,
+      let result = [];
+
+      firestoreDB.getSavedCharacter().then(querySnapshot => {
+        querySnapshot.forEach(function(doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.data().character);
+          result.push(doc.data().character); 
+        });
+        console.log(result.length);
+
+        if(result.length === 0){
+          this.setState({
+            status: 'EMPTY'
+          });
+        }
+        else{
+        this.setState({
+            result: result,
+            status: 'LOADED'
+          });
+        }
+      }).catch(() => {
+        this.setState({
+          status: 'ERROR'
+        });
+
+      });
+
+
+
+        /*characterData.forEach(function(doc) {
+          character.push({
+            name: doc.name,
+            //img: doc.thumbnail.path + "/portrait_fantastic." + doc.thumbnail.extension,
+            //id: doc.id,
+            ...doc.data(),
+          })
+        });*/
+
       
-    });
-    console.log("i state: " + this.state.character);
+
   }
   render() {
 
-    var user = firebase.auth().currentUser;
 
-    let knapp = null;
-
-    {user ? 
-      knapp = 
-        <h2>Comics: {this.state.Comics}</h2>
-      :
-      knapp = 
-        <h2>Ingenting alls</h2>
-    }
-    
     return (
       <div className="Saved">
         <div className="container">
-          <h1>Your Favourite Heroes</h1>
-          {knapp}
+          <div className="row row-eq-height">
+            <SavedCharacters status={this.state.status} result={this.state.result}/>             
+          </div>
         </div>
       </div>
     );

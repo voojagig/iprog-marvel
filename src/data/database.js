@@ -48,7 +48,7 @@ var enablePersistenceOn = false;
     var uid = user.uid;
     console.log(uid);
     return(db.collection("users").doc(uid).collection("characters").add({
-      character: character.name,
+      character,
     }).then(function() {
     console.log("Document successfully written!");
     }).catch(function(error) {
@@ -61,15 +61,8 @@ var enablePersistenceOn = false;
     var db = await getDB();
     var user = firebase.auth().currentUser; //gets the current users information from firebase
     var uid = user.uid;
-    console.log(uid)
-    return(
-    db.collection("users").doc(uid).collection("characters").get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.data());
-    });
-    }));
-
+  
+    return db.collection("users").doc(uid).collection("characters").get();
 
     /*db.collection("users").doc(uid).get().then(function(doc) {
       console.log(doc)
