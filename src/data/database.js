@@ -69,11 +69,11 @@ var enablePersistenceOn = false;
     var user = firebase.auth().currentUser;
     var uid = user.uid;
 
-    //return db.collection("users").doc(uid).collection("characters").doc(character).delete();
-
+    //gets all of the characters the active user has saved
     let collectionRef = db.collection("users").doc(uid).collection("characters");
-    console.log(character.id)
-    collectionRef.where("id", "==", character.id).get()
+    
+    //gets the wanted character by comparing the id. 
+    collectionRef.where("character.id", '==', character.id).get()
     .then(querySnapshot => {
       querySnapshot.forEach((doc) => {
         doc.ref.delete().then(() => {
@@ -86,6 +86,12 @@ var enablePersistenceOn = false;
     .catch(function(error) {
       console.log("Error getting documents: ", error);
     });
+
+
+
+
+
+
     return
   }
 
