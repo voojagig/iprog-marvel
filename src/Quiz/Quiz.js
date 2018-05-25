@@ -19,6 +19,7 @@ class Quiz extends Component {
         results: [],
         name: [],
         status: 'INITIAL',
+        alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     };
     this.nextName = this.nextName.bind(this);
   }
@@ -51,43 +52,50 @@ class Quiz extends Component {
 
   }
   startQuiz() {
-    modelInstance.getQuizCharacters().then(Data => {
-      let result = Data.data.results.filter((c) => {
-        if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
+    let alphabet = this.state.alphabet;
+    let letters = []
+    let heroes = [];
+    let nameList = [];
+
+    //shuffle letters in alphabet so 8 random letters fill letter array.
+    shuffle(alphabet);
+    for (let i = 0; i < 8; i++){
+      letters.push(alphabet[i]);
+    }
+
+    console.log("Letters: " + letters);
+    
+    // fetch 4 different characters, one from each letter in [letters]
+     for (let i = 0; i < 4; i++){
+      let alpha = letters[i];
+      modelInstance.getQuizCharacters(alpha).then(Data => {
+        let result = Data.data.results.filter((c) => {
+          if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
+        });
+
+        //push first fetched character w/ pic to heroes. 
+        heroes.push(result[0]);
+        console.log('heroes: ' + heroes);
+
+        //push first fetched name
+        nameList.push(result[0].name);
+        
+        console.log('namelist: ' + nameList);
+
+        this.setState({
+          results: this.state.results.concat([heroes]),
+          name: this.state.name.concat([nameList])[0],
+          status: 'LOADED',
+
+        });
+      }).catch(() => {
+        this.setState({
+          status: 'ERROR'
+        });
+
       });
-
-      //ta ut 8 st random
-      let heroes = [];
-      console.log(result)
-      shuffle(result);
-
-      for (let i = 0; i < 8; i++) {
-        console.log(result[i].name)
-        heroes.push(result[i]);
-      }
-      console.log(heroes);
-
-      //gets all the names from the characters in result in a list
-      let nameList = [];
-      for (let i = 0; i < heroes.length; i++) {
-        nameList.push(heroes[i].name);
-      }
-      //suffles the names
-      shuffle(nameList);
-
-      this.setState({
-        results: this.state.results.concat([heroes]),
-        name: this.state.name.concat([nameList])[0],
-        status: 'LOADED',
-
-      });
-    }).catch(() => {
-      this.setState({
-        status: 'ERROR'
-      });
-
-    });
-
+    }// slut for loop
+    console.log("i state: " + this.state.name)
     
   }
   nextName(names) {
