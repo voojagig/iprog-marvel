@@ -100,8 +100,13 @@ class CharacterCard extends Component {
           tooltip = <Tooltip id="modal-tooltip">Remove character from favorites</Tooltip>;
           break;
         case false: 
+          if(user === null){
+            tooltip = <Tooltip id="modal-tooltip">You must log in to save characters</Tooltip>;
+            break;
+          }
           tooltip = <Tooltip id="modal-tooltip">Save character</Tooltip>;
           break;
+
       }
         newCharacter = 
 
@@ -126,7 +131,7 @@ class CharacterCard extends Component {
               <div className="col-xs-4 thumbnail">
                 <img src={this.props.character.thumbnail.path + "/portrait_fantastic." + this.props.character.thumbnail.extension} alt=""/>
               </div>
-              <div className="col-xs-8">
+              <div className="col-xs-7">
                 <p>{this.props.character.description}</p>
 
               </div>

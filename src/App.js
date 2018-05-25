@@ -12,7 +12,7 @@ import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Quiz from "./Quiz/Quiz";
 import Saved from "./Saved/Saved";
-
+import Highscores from "./Highscores/Highscores";
 
 var provider = new firebase.auth.GoogleAuthProvider();
 
@@ -77,6 +77,7 @@ class App extends Component {
           <Route path="/characters" render={() => <ShowCharacters model={modelInstance}/>}/>
           <Route path="/Quiz" exact component={Quiz}/>
           <Route path="/saved" render={() => <Saved model={modelInstance}/>} />
+          <Route path="/highscores" render={() => <Highscores model={modelInstance}/>} />
 
         </header>
 

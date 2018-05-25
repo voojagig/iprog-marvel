@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
-import './Saved.css';
+import './Highscores.css';
 import firebase, { auth, provider } from '../firebase';
 import firestoreDB from '../data/database';
-import SavedCharacters from './SavedCharacters';
+import ShowHighscore from './ShowHighscore';
 
 
 
-class Saved extends Component {
+class Highscores extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: [],
+      result: null,
       status: 'INITIAL'
 
     };
@@ -33,41 +33,40 @@ class Saved extends Component {
   }
 
   getSavedItems(){
-      let result = [];
+      let result = null;
 
-      firestoreDB.getSavedCharacter().then(querySnapshot => {
+      firestoreDB.getScore().then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
-          // doc.data() is never undefined for query doc snapshots
-          result.push(doc.data().character); 
+      		 result = (doc.data().score); 
         });
 
-        if(result.length === 0){
-          this.setState({
+      if(result === null){
+	      this.setState({
             status: 'EMPTY'
           });
-        }
-        else{
-        this.setState({
+      }
+      else{
+	      this.setState({
             result: result,
             status: 'LOADED'
           });
-        }
+      }
       }).catch(() => {
         this.setState({
           status: 'ERROR'
         });
 
       });
-
   }
+  
   render() {
 
-
     return (
-      <div className="Saved">
+      <div className="Highscores">
         <div className="container">
           <div className="row row-eq-height">
-            <SavedCharacters status={this.state.status} result={this.state.result}/>             
+          	<h1>Highscore for the quiz</h1>
+            <ShowHighscore status={this.state.status} result={this.state.result}/>             
           </div>
         </div>
       </div>
@@ -75,4 +74,4 @@ class Saved extends Component {
   }
 }
 
-export default Saved;
+export default Highscores;

@@ -46,7 +46,6 @@ var enablePersistenceOn = false;
     var db = await getDB();
     var user = firebase.auth().currentUser; //gets the current users information from firebase
     var uid = user.uid;
-    console.log(uid);
     return(db.collection("users").doc(uid).collection("characters").add({
       character,
     }).then(function() {
@@ -55,6 +54,8 @@ var enablePersistenceOn = false;
       console.error("Error writing document: ", error);
     }));
   }
+
+
   // gets the saved characters (only the ones that the current user has saved).
   firestoreDB.getSavedCharacter = async function() {
     var db = await getDB();
@@ -63,6 +64,8 @@ var enablePersistenceOn = false;
   
     return db.collection("users").doc(uid).collection("characters").get();
   }
+
+
   //removes a character from the database
   firestoreDB.deleteCharacter = async function(character){
     var db = await getDB();
@@ -86,74 +89,58 @@ var enablePersistenceOn = false;
     .catch(function(error) {
       console.log("Error getting documents: ", error);
     });
-
-
-
-
-
-
     return
   }
-
-
-
-
-  //  EXAMPLE FUNCTIONS:   TEAMS
-  firestoreDB.addTeam = async function(name, logo) {
+  //sets highscore, score is a number
+  firestoreDB.setScore = async function(score){
     var db = await getDB();
-    return (db.collection("teams").add({
-      name: name,
-      logo: logo,
-      wins: 0,
-      losses: 0
-    }));
-  }
-
-  firestoreDB.getTeam = async function(teamID) {
-    var db = await getDB();
-    return db.collection("teams").doc(teamID).get();
-  }
-
-  firestoreDB.setTeam = async function(teamID, teamData){
-    var db = await getDB();
-    return db.collection("teams").doc(teamID).set(teamData);
-  }
-  // OPPONENTS
-  firestoreDB.addOpponent = async function(teamID, opName, logo) {
-    var db = await getDB();
-    return db.collection("teams").doc(teamID).collection("opponents").add({
-      name: opName,
-      logo: logo,
-      active: true
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+    return db.collection("users").doc(uid).collection("highscore").add({
+      score,
+    }).then(function() {
+    console.log("Document successfully written!");
+    }).catch(function(error) {
+      console.error("Error writing document: ", error);
     });
   }
-
-  firestoreDB.getOpponent = async function(teamID, opID){
+  
+  firestoreDB.updateScore = async function(score){
     var db = await getDB();
-    return db.collection("teams").doc(teamID).collection("opponents").doc(opID).get();
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+    //deletes the score stored in database
+    db.collection("users").doc(uid).collection("highscore").get()
+    .then(querySnapshot => {
+      querySnapshot.forEach((doc) => {
+        doc.ref.delete().then(() => {
+          console.log("Document successfully deleted!");
+          //adds the new highscore
+            db.collection("users").doc(uid).collection("highscore").add({
+              score,
+            }).then(function() {
+              console.log("Document successfully changed!");
+              }).catch(function(error) {
+                console.error("Error writing document: ", error);
+              });
+        }).catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+      });
+    })
+    .catch(function(error) {
+      console.log("Error getting documents: ", error);
+    });
+    
   }
 
-  firestoreDB.getAllOpponents = async function(teamID){
+  firestoreDB.getScore = async function(){
     var db = await getDB();
-    return db.collection("teams").doc(teamID).collection("opponents").get();
+    var user = firebase.auth().currentUser;
+    var uid = user.uid;
+  
+    return db.collection("users").doc(uid).collection("highscore").get();
+
   }
-
-  firestoreDB.setOpponent = async function(teamID, opID, opponent){
-    var db = await getDB();
-    return db.collection("teams").doc(teamID).collection("opponents").doc(opID).set(opponent);
-  }
-
-  firestoreDB.deleteOpponent = async function(teamID, opID){
-    var db = await getDB();
-    return db.collection("teams").doc(teamID).collection("opponents").doc(opID).delete();
-  }
-
-  firestoreDB.setInactive = async function(teamID, opID){
-    var db = await getDB();
-    return db.collection("teams").doc(teamID).collection("opponents").doc(opID).set({active: false},{merge: true});
-  }
-
-
-
 
 export default firestoreDB;

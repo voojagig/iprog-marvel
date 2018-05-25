@@ -64,7 +64,7 @@ class Navbar extends Component {
 			          <ul className="dropdown-menu">
 			           
 			           	{/*only show higscore and saved characters option when user is logged in. */}
-			            <li hidden={(this.props.user === null) ? true : false}><NavLink to="#"activeclassname="active">Highscore</NavLink></li>
+			            <li hidden={(this.props.user === null) ? true : false}><NavLink to="/highscores"activeclassname="active">Highscore</NavLink></li>
 			            <li hidden={(this.props.user === null) ? true : false}><NavLink to="/saved" activeclassname="active">Saved characters</NavLink></li>
 			            <li role="separator" className="divider"></li>
 			            <li>

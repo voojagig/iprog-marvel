@@ -13,8 +13,6 @@ class SavedCharacter extends Component {
 
   render() {
     let heroes = null;
-    console.log(this.props.status)
-    console.log(this.props.result)
 
     switch(this.props.status){
       case 'INITIAL': 
@@ -22,15 +20,11 @@ class SavedCharacter extends Component {
       break;
       case 'LOADED': 
 
-         console.log("i loaded: ", this.props.result)
-
-         console.log();
-          
          heroes = this.props.result.map((character) =>
                 <div className="col-md-2 col-sm-3 col-xs-4 box" key={character.id}>
 
 
-                      <div className="thumbnail">
+                      <div className="thumbnail picture">
                         <img src={character.thumbnail.path + "/portrait_fantastic." + character.thumbnail.extension} alt=""/>
                         <div className="caption">
                           <h4 className="name">{character.name}</h4>

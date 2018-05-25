@@ -4,6 +4,7 @@ import { modelInstance } from '../data/Model'
 import { Button } from 'react-bootstrap';
 import CharacterCard from '../CharacterCard/CharacterCard';
 import firestoreDB from '../data/database';
+import firebase, { auth } from '../firebase';
 
 class Characters extends Component {
 
@@ -59,7 +60,16 @@ class Characters extends Component {
         character: characterResults.data.results[0],
       });
     });
-    this.checkIfSaved(id);
+    let user = firebase.auth().currentUser; //gets the current users information from firebase
+    if(user !== null){
+      this.checkIfSaved(id);
+      }else{
+        this.setState({ 
+          isSaved: false,
+          showModal: true, 
+        });
+        
+      }
  
 
   }
@@ -96,6 +106,7 @@ class Characters extends Component {
 
   render() {
     let characterList = null;
+
 
     // depending on the state we either generate
     // useful message to the user or show the list

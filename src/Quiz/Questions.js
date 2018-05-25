@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'react-bootstrap';
 import './Questions.css';
 import { modelInstance } from '../data/Model';
+import firestoreDB from '../data/database';
 
 
 class Questions extends Component {
@@ -58,9 +59,30 @@ class Questions extends Component {
     }
   }
   finishedQuiz() {
-    this.setState({
-      quiz: 'FINISHED'
-    });
+    let result = [];
+    firestoreDB.getScore().then(querySnapshot => {
+        querySnapshot.forEach(function(doc) {
+          console.log("result from get scores ", doc.data());
+           result =(doc.data().score); 
+        });
+        console.log("result, click", result, this.state.click);
+        if(result.length === 0){
+          firestoreDB.setScore(this.state.click);
+        }
+        else {if(result > this.state.click){
+          firestoreDB.updateScore(this.state.click);
+        }
+        }
+
+        this.setState({
+          quiz: 'FINISHED'
+        });
+      });
+    
+
+
+
+  
   }
 
 
