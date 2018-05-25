@@ -9,7 +9,7 @@ import Welcome from './Welcome/Welcome';
 import ShowComics from './ShowComics/ShowComics';
 import ShowCharacters from './ShowCharacters/ShowCharacters';
 import Login from "./Login/Login";
-import Register from "./Register/Register";
+
 import Quiz from "./Quiz/Quiz";
 import Saved from "./Saved/Saved";
 import Highscores from "./Highscores/Highscores";
@@ -71,7 +71,6 @@ class App extends Component {
           {/* We rendered diffrent component based on the path */}
           <Route exact path="/home" render={() => <Welcome model={modelInstance}/>}/>
           <Route path="/login" exact component={Login}/>
-          <Route path="/register" exact component={Register}/>
 
           <Route path="/comics" render={() => <ShowComics model={modelInstance}/>}/>
           <Route path="/characters" render={() => <ShowCharacters model={modelInstance}/>}/>
