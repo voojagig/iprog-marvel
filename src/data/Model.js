@@ -1,3 +1,4 @@
+var shuffle = require('shuffle-array');
 const Model = function() {
 
 	var CryptoJS = require("crypto-js");
@@ -79,19 +80,21 @@ const Model = function() {
 		.catch(handleError)
 	}
 
-	this.getQuizCharacters = function() {
+	this.getQuizCharacters = function(alpha) {
 		//comics?titleStartsWith=A&orderBy=title&apiKey...
 		var PRIV_KEY = '1a60651bb50c75bb1aa84ede4cdfd872bf409040';
 		var PUBLIC_KEY = '988fc225729038dfd5246cb095fcc5ec';
 
 		// you need a new ts every request                                                                                    
 		var ts = new Date().getTime();
-		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();                                                                   
-		
+		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();  
 
-		//we have trouble of getting the data from the API.
+		let offset = (Math.floor(Math.random() * Math.floor(4)));
+		
+		
+		
 		var url = 'https://gateway.marvel.com:443/v1/public/characters?';
-		var finalurl = url   + 'limit=11&' + 'ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
+		var finalurl = url   + 'nameStartsWith=' + alpha +'&limit=15&offset=' + offset + '&ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
 		return fetch(finalurl)
 		.then(processResponse)

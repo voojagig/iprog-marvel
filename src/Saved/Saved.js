@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Saved.css';
-import firebase, { auth, provider } from '../firebase';
 import firestoreDB from '../data/database';
 import SavedCharacters from './SavedCharacters';
 

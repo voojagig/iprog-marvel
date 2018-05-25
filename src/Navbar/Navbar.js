@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Navbar.css';
-import { nav, NavLink, Link} from 'react-router-dom';
-import { modelInstance } from '../data/Model'
+import { nav, NavLink} from 'react-router-dom';
+
 
 
 class Navbar extends Component {
@@ -29,7 +29,7 @@ class Navbar extends Component {
 
 	  	{this.props.user ? 
 
-	  		//console.log(this.state.user)
+	  		
 	  		knapp = 
 	  			<a onClick={this.props.toLogout} >Log out</a>  		
 	  		:

@@ -19,6 +19,7 @@ class Quiz extends Component {
         results: [],
         name: [],
         status: 'INITIAL',
+        alphabet: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
     };
     this.nextName = this.nextName.bind(this);
   }
@@ -51,31 +52,45 @@ class Quiz extends Component {
 
   }
   startQuiz() {
-    modelInstance.getQuizCharacters().then(Data => {
-      let result = Data.data.results.filter((c) => {
-        if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
+    let alphabet = this.state.alphabet;
+    let letters = []
+    let heroes = [];
+    
+
+    //shuffle letters in alphabet so 8 random letters fill letter array.
+    shuffle(alphabet);
+    for (let i = 0; i < 8; i++){
+      letters.push(alphabet[i]);
+    }
+
+
+    
+    // fetch 4 different characters, one from each letter in [letters]
+     for (let i = 0; i < 8; i++){
+      let alpha = letters[i];
+      modelInstance.getQuizCharacters(alpha).then(Data => {
+        let result = Data.data.results.filter((c) => {
+          if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
+        });
+
+        //push first fetched character w/ pic to heroes. 
+        heroes.push(result[0]);
+    
+        
+
+        this.setState({
+          results: this.state.results.concat([heroes]),
+          name: this.state.name.concat([result[0].name]),
+          status: 'LOADED',
+
+        });
+      }).catch(() => {
+        this.setState({
+          status: 'ERROR'
+        });
+
       });
-      //gets all the names from the characters in result in a list
-      let nameList = [];
-      for (let i = 0; i < result.length; i++) {
-        nameList.push(result[i].name);
-      }
-      //suffles the names
-      shuffle(nameList);
-
-      this.setState({
-        results: this.state.results.concat([result]),
-        name: this.state.name.concat([nameList])[0],
-        status: 'LOADED',
-
-      });
-    }).catch(() => {
-      this.setState({
-        status: 'ERROR'
-      });
-
-    });
-
+    }// end for loop
     
   }
   nextName(names) {
