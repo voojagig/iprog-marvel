@@ -84,7 +84,7 @@ class Quiz extends Component {
 
         this.setState({
           results: this.state.results.concat([heroes]),
-          name: this.state.name.concat([nameList]),
+          name: this.state.name.concat([result[0].name]),
           status: 'LOADED',
 
         });
@@ -96,6 +96,7 @@ class Quiz extends Component {
       });
     }// slut for loop
     console.log("i state: " + this.state.name)
+    
     
   }
   nextName(names) {

@@ -44,6 +44,7 @@ class Questions extends Component {
     if(character.name === this.props.name[0]){
       event.target.style.border = '5px solid #179f18';
       this.props.nextName(this.props.name);
+      console.log('om rätt: '+this.props.name)
 
       if(this.props.name.length === 1){
         this.finishedQuiz();
@@ -52,6 +53,7 @@ class Questions extends Component {
     }
     else{
       event.target.style.border = '5px solid #d5220f';
+      console.log('annars: '+this.props.name)
       this.setState({
         click: this.state.click + 1,
       });
@@ -76,6 +78,7 @@ class Questions extends Component {
             quiz = <em>Loading...</em>
             break;
           case 'LOADED':
+          
             quiz = this.props.results[0].map((character) =>
             	 <div className="col-md-3 col-sm-4 pic" key={character.id}>
               	<Button onClick={this.handleClick.bind(this, character)}>
