@@ -55,16 +55,28 @@ class Quiz extends Component {
       let result = Data.data.results.filter((c) => {
         if( c.thumbnail.path !=="http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available") return true
       });
+
+      //ta ut 8 st random
+      let heroes = [];
+      console.log(result)
+      shuffle(result);
+
+      for (let i = 0; i < 8; i++) {
+        console.log(result[i].name)
+        heroes.push(result[i]);
+      }
+      console.log(heroes);
+
       //gets all the names from the characters in result in a list
       let nameList = [];
-      for (let i = 0; i < result.length; i++) {
-        nameList.push(result[i].name);
+      for (let i = 0; i < heroes.length; i++) {
+        nameList.push(heroes[i].name);
       }
       //suffles the names
       shuffle(nameList);
 
       this.setState({
-        results: this.state.results.concat([result]),
+        results: this.state.results.concat([heroes]),
         name: this.state.name.concat([nameList])[0],
         status: 'LOADED',
 
