@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import './Questions.css';
 import { modelInstance } from '../data/Model';
 import firestoreDB from '../data/database';
+import firebase, { auth } from '../firebase';
 
 
 class Questions extends Component {
@@ -60,12 +61,13 @@ class Questions extends Component {
   }
   finishedQuiz() {
     let result = [];
+    let user = firebase.auth().currentUser; //gets the current users information from firebase
+
+    if(user !== null){
     firestoreDB.getScore().then(querySnapshot => {
         querySnapshot.forEach(function(doc) {
-          console.log("result from get scores ", doc.data());
            result =(doc.data().score); 
         });
-        console.log("result, click", result, this.state.click);
         if(result.length === 0){
           firestoreDB.setScore(this.state.click);
         }
@@ -78,11 +80,12 @@ class Questions extends Component {
           quiz: 'FINISHED'
         });
       });
-    
-
-
-
-  
+    }
+    else{
+      this.setState({
+        quiz: 'FINISHED'
+      });
+    }
   }
 
 
