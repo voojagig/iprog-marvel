@@ -66,7 +66,7 @@ class Quiz extends Component {
     console.log("Letters: " + letters);
     
     // fetch 4 different characters, one from each letter in [letters]
-     for (let i = 0; i < 4; i++){
+     for (let i = 0; i < 8; i++){
       let alpha = letters[i];
       modelInstance.getQuizCharacters(alpha).then(Data => {
         let result = Data.data.results.filter((c) => {
@@ -84,7 +84,7 @@ class Quiz extends Component {
 
         this.setState({
           results: this.state.results.concat([heroes]),
-          name: this.state.name.concat([nameList])[0],
+          name: this.state.name.concat([nameList]),
           status: 'LOADED',
 
         });
