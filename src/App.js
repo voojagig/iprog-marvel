@@ -80,20 +80,7 @@ class App extends Component {
 
         </header>
 
-        <div className="wrapper">
-          {this.state.user ?
-            <div>
-              <h2>Välkommen in! {this.state.user.email} </h2>
-              <button onClick={this.logout}>Log Out</button>
-            </div>
-            
-            :
-            <div>
-              <h2>Du är ej inloggad</h2>
-              <button onClick={this.login}>Log in</button>
-            </div>
-          }
-        </div>
+        
      
       </div>
     );

@@ -4,6 +4,7 @@ import './Questions.css';
 import { modelInstance } from '../data/Model';
 
 
+
 class Questions extends Component {
   constructor(props) {
     super(props);
@@ -13,8 +14,7 @@ class Questions extends Component {
         border: '5px solid white',
         name: [],
         click: 0,
-        quiz: 'ONGOING'
-
+        quiz: 'ONGOING',
     }
   }
 
@@ -68,6 +68,7 @@ class Questions extends Component {
 
 
   render() {
+    let namnen = this.props.name;
     let quiz = null;
     let counter = null;
     let name = null;
@@ -78,7 +79,7 @@ class Questions extends Component {
             quiz = <em>Loading...</em>
             break;
           case 'LOADED':
-          
+
             quiz = this.props.results[0].map((character) =>
             	 <div className="col-md-3 col-sm-4 pic" key={character.id}>
               	<Button onClick={this.handleClick.bind(this, character)}>

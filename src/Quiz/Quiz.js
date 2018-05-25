@@ -55,7 +55,7 @@ class Quiz extends Component {
     let alphabet = this.state.alphabet;
     let letters = []
     let heroes = [];
-    let nameList = [];
+    
 
     //shuffle letters in alphabet so 8 random letters fill letter array.
     shuffle(alphabet);
@@ -63,7 +63,7 @@ class Quiz extends Component {
       letters.push(alphabet[i]);
     }
 
-    console.log("Letters: " + letters);
+
     
     // fetch 4 different characters, one from each letter in [letters]
      for (let i = 0; i < 8; i++){
@@ -75,12 +75,8 @@ class Quiz extends Component {
 
         //push first fetched character w/ pic to heroes. 
         heroes.push(result[0]);
-        console.log('heroes: ' + heroes);
-
-        //push first fetched name
-        nameList.push(result[0].name);
+    
         
-        console.log('namelist: ' + nameList);
 
         this.setState({
           results: this.state.results.concat([heroes]),
@@ -94,9 +90,7 @@ class Quiz extends Component {
         });
 
       });
-    }// slut for loop
-    console.log("i state: " + this.state.name)
-    
+    }// end for loop
     
   }
   nextName(names) {

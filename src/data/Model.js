@@ -90,16 +90,10 @@ const Model = function() {
 		var ts = new Date().getTime();
 		var hash = CryptoJS.MD5(ts + PRIV_KEY + PUBLIC_KEY).toString();  
 
-		// let alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 
-		// 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 		let offset = (Math.floor(Math.random() * Math.floor(4)));
-		console.log('offset:' + offset);
 		
-		// shuffle(alphabet); //only fetch for this letter
-		// console.log(alphabet[0]);
-		// let letter = alphabet[0];
-		console.log('alpha: ' + alpha);
-		//we have trouble of getting the data from the API.
+		
+		
 		var url = 'https://gateway.marvel.com:443/v1/public/characters?';
 		var finalurl = url   + 'nameStartsWith=' + alpha +'&limit=15&offset=' + offset + '&ts=' + ts + '&apikey=' + PUBLIC_KEY + '&hash=' + hash;
 
